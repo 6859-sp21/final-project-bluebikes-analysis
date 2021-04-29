@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+<script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+
+<div class="wrap">
+<svg id="my_dataviz" ></svg>
+</div>
+<script>
+
+// The svg for map
+var svg = d3.select("svg");
+var wrap = d3.select(".wrap").node();
+var width = +wrap.getBoundingClientRect().width,
+    height = +wrap.getBoundingClientRect().height;
+
+// Map and projection
+var projection = d3.geoMercator()
+    .scale((Math.min(width/ Math.PI, (height-20)/ Math.PI))*0.8)
+    .translate([width/2, (height-20)/2+20])
+
+// Map zoom
+var zoom = d3.zoom().scaleExtent([1, 8]).on("zoom", zoomed);
+
+function zoomed() {
+  svg.selectAll("g").style("stroke-width", 2 / d3.event.transform.k + "px");
+  svg.selectAll("g").attr("transform", d3.event.transform);
+  svg.selectAll(".myPath").style("stroke-width", 2 / d3.event.transform.k + "px");
+  svg.selectAll(".myPath").attr("transform", d3.event.transform);
+}
+
+d3.queue()
+  .defer(d3.csv, "https://6859-sp21.github.io/final-project-bluebikes-analysis/data/201903-bluebikes-tripdata.csv")
+  .defer(d3.csv, "https://6859-sp21.github.io/final-project-bluebikes-analysis/data/201904-bluebikes-tripdata.csv") 
+  .defer(d3.csv, "https://6859-sp21.github.io/final-project-bluebikes-analysis/data/201905-bluebikes-tripdata.csv") 
+  .defer(d3.csv, "https://6859-sp21.github.io/final-project-bluebikes-analysis/data/201906-bluebikes-tripdata.csv") 
+  .await(ready);
+
+function ready(error, alldata) {
+	data = d3.merge(alldata)
+	console.log(data[0])
+}
+</script>
