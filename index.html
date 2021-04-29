@@ -6,7 +6,7 @@
 <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
 
 <div class="wrap">
-<svg id="my_dataviz" ></svg>
+<div id="viz-1" ></div>
 </div>
 <script>
 
@@ -31,15 +31,53 @@ function zoomed() {
   svg.selectAll(".myPath").attr("transform", d3.event.transform);
 }
 
+
+var viz1 = d3.select("#viz-1")
+    .append("svg")
+        .attr("width", 600)
+        .attr("height", 600)
+    .append("g")
+        .attr("transform",
+              "translate(" + 50 + "," + 50 + ")");
 d3.queue()
+  .defer(d3.csv, "https://6859-sp21.github.io/final-project-bluebikes-analysis/data/trips-per-month.csv")
   .defer(d3.csv, "https://6859-sp21.github.io/final-project-bluebikes-analysis/data/201903-bluebikes-tripdata.csv")
-  .defer(d3.csv, "https://6859-sp21.github.io/final-project-bluebikes-analysis/data/201904-bluebikes-tripdata.csv") 
-  .defer(d3.csv, "https://6859-sp21.github.io/final-project-bluebikes-analysis/data/201905-bluebikes-tripdata.csv") 
-  .defer(d3.csv, "https://6859-sp21.github.io/final-project-bluebikes-analysis/data/201906-bluebikes-tripdata.csv") 
   .await(ready);
 
-function ready(error, ...alldata) {
-	console.log("Loaded " + alldata.length + " data files")
-	data = d3.merge(alldata)
+function ready(error, tripspermonth, ...alldata) {
+    console.log("Loaded " + alldata.length + " raw data files")
+    //data = d3.merge(alldata)
+
+    // Add x axis
+    var x = d3.scaleTime()
+      .domain(d3.extent(tripspermonth, 
+          function(d) { 
+              return d3.timeParse("%b-%y")(d["Month of Starttime"]); 
+          }))
+      .range([ 0, 400]);
+    viz1.append("g")
+      .attr("transform", "translate(0," + 400 + ")")
+      .call(d3.axisBottom(x));
+
+    // Add Y axis
+    var y = d3.scaleLinear()
+      .domain([0, d3.max(tripspermonth, function(d) {return +d["NumTrips"]; })])
+      .range([ 400, 0 ]);
+    viz1.append("g")
+      .call(d3.axisLeft(y));
+
+    // Add the line
+    viz1.append("path")
+      .datum(tripspermonth)
+      .attr("fill", "none")
+      .attr("stroke", "steelblue")
+      .attr("stroke-width", 1.5)
+      .attr("d", d3.line()
+        .x(function(d) { 
+            return x(d3.timeParse("%b-%y")(d["Month of Starttime"]));
+          })
+        .y(function(d) { return y(+d["NumTrips"]); })
+        )
+
 }
 </script>
