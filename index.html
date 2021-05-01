@@ -142,14 +142,17 @@ scroll()
 
 function draw1 () {
     d3.selectAll(".viz1").style("opacity", "1.0")
+    d3.selectAll(".viz2").style("opacity", "0")
 }
 
 function draw2 () {
     d3.selectAll(".viz1").style("opacity", "0")
+    d3.selectAll(".viz2").style("opacity", "1")
 }
 
 function draw3 () {
     d3.selectAll(".viz1").style("opacity", "0")
+    d3.selectAll(".viz2").style("opacity", "0")
 }
 
 // Each of these is a function to draw each step of the scrollytelling
@@ -205,16 +208,17 @@ var viz = d3.select("#viz")
               "translate(" + 50 + "," + 50 + ")");
 d3.queue()
   .defer(d3.csv, "https://6859-sp21.github.io/final-project-bluebikes-analysis/data/trips-per-month.csv")
+  .defer(d3.csv, "https://6859-sp21.github.io/final-project-bluebikes-analysis/data/tripduration-by-week.csv")
   .defer(d3.csv, "https://6859-sp21.github.io/final-project-bluebikes-analysis/data/201903-bluebikes-tripdata.csv")
   .await(ready);
 
-function ready(error, tripspermonth, ...alldata) {
+function ready(error, tripspermonth, tripdur, ...alldata) {
     console.log("Loaded " + alldata.length + " raw data files")
     //data = d3.merge(alldata)
 
     // Building visualization 1:
     // Add x axis
-    var x = d3.scaleTime()
+    var scaleX_tpm = d3.scaleTime()
       .domain(d3.extent(tripspermonth, 
           function(d) { 
               return d3.timeParse("%b-%y")(d["Month of Starttime"]); 
@@ -223,16 +227,36 @@ function ready(error, tripspermonth, ...alldata) {
     viz.append("g")
       .attr("class", "viz1")
       .attr("transform", "translate(0," + 400 + ")")
-      .call(d3.axisBottom(x));
+      .call(d3.axisBottom(scaleX_tpm));
 
     // Add Y axis
-    var y = d3.scaleLinear()
+    var scaleY_tpm = d3.scaleLinear()
       .domain([0, d3.max(tripspermonth, function(d) {return +d["NumTrips"]; })])
       .range([ 400, 0 ]);
     viz.append("g")
       .attr("class", "viz1")
-      .call(d3.axisLeft(y));
+      .call(d3.axisLeft(scaleY_tpm));
+      
+    var scaleX_td = d3.scaleTime()
+      .domain(d3.extent(tripdur,
+        function(d) {
+          return d3.timeParse("%d-%b-%y")(d["Week of Starttime"]);
+        }))
+        .range([0, 400]);
+    viz.append("g")
+      .attr("class", "viz2")
+      .attr("transform", "translate(0," + 400 + ")")
+      .call(d3.axisBottom(scaleX_td));
+     
+    var scaleY_td = d3.scaleLinear()
+      .domain([0, d3.max(tripdur, function(d) {return +d["Median Tripduration"]; })])
+      .range([ 400, 0 ]);
+    viz.append("g")
+      .attr("class", "viz2")
+      .call(d3.axisLeft(scaleY_td));
+      
 
+      
     // Add the line
     viz.append("path")
       .attr("class", "viz1")
@@ -243,11 +267,23 @@ function ready(error, tripspermonth, ...alldata) {
       .attr("d", d3.line()
         .x(function(d) { 
             //console.log(d["Month of Starttime"]);
-            return x(d3.timeParse("%b-%y")(d["Month of Starttime"]));
+            return scaleX_tpm(d3.timeParse("%b-%y")(d["Month of Starttime"]));
           })
-        .y(function(d) { return y(+d["NumTrips"]); })
+        .y(function(d) { return scaleY_tpm(+d["NumTrips"]); })
         )
-
-
+    console.log(tripdur[52]["Median Tripduration"])
+    viz.append("path")
+      .attr("class", "viz2")
+      .datum(tripdur)
+      .attr("fill", "none")
+      .attr("stroke", "steelblue")
+      .attr("stroke-width", 1.5)
+      .attr("d", d3.line()
+        .x(function(d) {
+          return scaleX_td(d3.timeParse("%d-%b-%y")(d["Week of Starttime"]));
+        })
+        //.y(function(d) {return 0;})
+        .y(function(d) { return scaleY_td(+d["Median Tripduration"]); })
+        )
 }
 </script>
