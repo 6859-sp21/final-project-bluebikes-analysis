@@ -156,6 +156,7 @@ scroll()
 function draw1 () {
     d3.selectAll(".viz1").style("opacity", "1.0")
     d3.selectAll(".viz2").style("opacity", "0")
+    d3.selectAll(".viz3").style("opacity", "0")
 }
 
 function draw2 () {
@@ -210,10 +211,11 @@ d3.queue()
   .defer(d3.csv, "https://6859-sp21.github.io/final-project-bluebikes-analysis/data/trips-per-month.csv")
   .defer(d3.csv, "https://6859-sp21.github.io/final-project-bluebikes-analysis/data/tripduration-by-week.csv")
   .defer(d3.json, "https://6859-sp21.github.io/final-project-bluebikes-analysis/data/Boston_Neighborhoods.geojson")
+  .defer(d3.csv, "https://6859-sp21.github.io/final-project-bluebikes-analysis/data/tripsperhour.csv")
   .defer(d3.csv, "https://6859-sp21.github.io/final-project-bluebikes-analysis/data/201903-bluebikes-tripdata.csv")
   .await(ready);
 
-function ready(error, tripspermonth, tripdur, boston, ...alldata) {
+function ready(error, tripspermonth, tripdur, boston, tripsperhour, ...alldata) {
     console.log("Loaded " + alldata.length + " raw data files")
     //data = d3.merge(alldata)
 
@@ -237,7 +239,23 @@ function ready(error, tripspermonth, tripdur, boston, ...alldata) {
     viz.append("g")
       .attr("class", "viz1")
       .call(d3.axisLeft(scaleY_tpm));
-      
+            
+    // Add the line
+    viz.append("path")
+      .attr("class", "viz1")
+      .datum(tripspermonth)
+      .attr("fill", "none")
+      .attr("stroke", "steelblue")
+      .attr("stroke-width", 1.5)
+      .attr("d", d3.line()
+        .x(function(d) { 
+            //console.log(d["Month of Starttime"]);
+            return scaleX_tpm(d3.timeParse("%b-%y")(d["Month of Starttime"]));
+          })
+        .y(function(d) { return scaleY_tpm(+d["NumTrips"]); })
+        )
+        
+    // Building viz 2
     var scaleX_td = d3.scaleTime()
       .domain(d3.extent(tripdur,
         function(d) {
@@ -255,22 +273,6 @@ function ready(error, tripspermonth, tripdur, boston, ...alldata) {
     viz.append("g")
       .attr("class", "viz2")
       .call(d3.axisLeft(scaleY_td));
-      
-    // Add the line
-    viz.append("path")
-      .attr("class", "viz1")
-      .datum(tripspermonth)
-      .attr("fill", "none")
-      .attr("stroke", "steelblue")
-      .attr("stroke-width", 1.5)
-      .attr("d", d3.line()
-        .x(function(d) { 
-            //console.log(d["Month of Starttime"]);
-            return scaleX_tpm(d3.timeParse("%b-%y")(d["Month of Starttime"]));
-          })
-        .y(function(d) { return scaleY_tpm(+d["NumTrips"]); })
-        )
-
 
     viz.append("path")
       .attr("class", "viz2")
@@ -284,6 +286,47 @@ function ready(error, tripspermonth, tripdur, boston, ...alldata) {
         })
         //.y(function(d) {return 0;})
         .y(function(d) { return scaleY_td(+d["Median Tripduration"]); })
+        )
+        
+    // Building viz 3
+    const tph_timeparse = "%m/%d/%Y %H:%M"
+    
+    var filtered_tph = tripsperhour.filter(function(d) {
+      //console.log(d["Hour of Starttime"]);
+      d_time = d3.timeParse(tph_timeparse)(d["Hour of Starttime"]);
+      //console.log(d_time)
+      return d_time.getMonth() == 8 && d_time.getFullYear() == 2020;
+    })
+
+    var scaleX_tph = d3.scaleTime()
+      .domain(d3.extent(filtered_tph,
+        function(d) {
+          return d3.timeParse(tph_timeparse)(d["Hour of Starttime"]);
+        }))
+        .range([0, 400]);
+    viz.append("g")
+      .attr("class", "viz3")
+      .attr("transform", "translate(0," + 400 + ")")
+      .call(d3.axisBottom(scaleX_tph));
+        
+    var scaleY_tph = d3.scaleLinear()
+      .domain([0, d3.max(filtered_tph, function(d) {return +d["NumTrips"]; })])
+      .range([ 400, 0 ]);
+    viz.append("g")
+      .attr("class", "viz3")
+      .call(d3.axisLeft(scaleY_tph));
+      
+    viz.append("path")
+      .attr("class", "viz3")
+      .datum(filtered_tph)
+      .attr("fill", "none")
+      .attr("stroke", "steelblue")
+      .attr("stroke-width", 1.5)
+      .attr("d", d3.line()
+        .x(function(d) {
+          return scaleX_tph(d3.timeParse(tph_timeparse)(d["Hour of Starttime"]));
+        })
+        .y(function(d) { return scaleY_tph(+d["NumTrips"]); })
         )
 
     // Building visualization 4:
