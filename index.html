@@ -5,11 +5,175 @@
 <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
 
+<head>
+<style>
+/* css goes here */
+body, html {
+  font-family: Helvetica, sans-serif;
+  text-align: left;
+}
+
+.wrap {
+    margin: 10px;
+}
+
+#sections {
+position: relative;
+display: inline-block;
+width: 250px;
+top: 0px;
+z-index: 90;
+}
+
+.step {
+    margin-bottom: 200px;
+}
+
+#viz {
+    display: inline-block;
+    position: fixed;
+    top: 60px;
+    z-index: 1;
+    margin-left: 0;
+
+    height: 600px;
+    width: 600px;
+    background-color: #ddd;
+}
+
+.viz1 {
+    opacity: 1
+}
+.viz2 {
+    opacity: 0
+}
+.viz3 {
+    opacity: 0
+}
+</style>
+</head>
+
 <div class="wrap">
-<div id="viz-1" ></div>
-</div>
+    <div id="sections">
+         <section class="step">
+            <div class="title">Part 1 text here:</div>
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</section>
+         <section class="step">
+            <div class="title">Part 2 text here:</div>
+            Euismod in pellentesque massa placerat duis. Sagittis vitae et leo duis ut diam. Sit amet luctus venenatis lectus magna fringilla urna porttitor. Pellentesque elit eget gravida cum. Ac tortor dignissim convallis aenean. Dui ut ornare lectus sit amet. Adipiscing diam donec adipiscing tristique risus nec feugiat in fermentum. Cursus euismod quis viverra nibh. Nisl nisi scelerisque eu ultrices vitae auctor. Purus semper eget duis at tellus at urna condimentum. Integer malesuada nunc vel risus.
+         </section>
+         <section class="step">
+            <div class="title">Part 3 text here:</div>
+            Neque gravida in fermentum et sollicitudin ac. Imperdiet massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Nisl pretium fusce id velit. Dignissim diam quis enim lobortis scelerisque fermentum dui. Elit ut aliquam purus sit amet. Lacus vel facilisis volutpat est. Dui sapien eget mi proin sed libero enim sed. Non nisi est sit amet facilisis. Libero nunc consequat interdum varius sit amet mattis vulputate.
+         </section>
+         <section class="step"></section>
+    </div>
+    <div id="viz" ></div>
+    </div>
 <script>
 
+// Scrollytelling source: https://towardsdatascience.com/how-i-created-an-interactive-scrolling-visualisation-with-d3-js-and-how-you-can-too-e116372e2c73
+
+// Handle scroll events
+function scroller(){
+  let container = d3.select('body')
+  let dispatch = d3.dispatch('active', 'progress');
+  let sections = d3.selectAll('.step')
+  let sectionPositions
+  let currentIndex = -1
+  let containerStart = 0;
+
+  // Binds functions to their events
+  function scroll(){
+    d3.select(window)
+      .on('scroll.scroller', position)
+      .on('resize.scroller', resize)
+      resize();
+    let timer = d3.timer(function() {
+      position();
+      timer.stop();
+    });
+  }
+
+  // Deal with window resizing
+  function resize(){
+    sectionPositions = [];
+    let startPos;
+    sections.each(function(d, i) {
+      let top = this.getBoundingClientRect().top;
+      if (i === 0 ){
+        startPos = top;
+      }
+      sectionPositions.push(top - startPos)
+    });
+  }
+
+  // Where the user is on the page
+  function position() {
+    let pos = window.pageYOffset - 300 - containerStart;
+    let sectionIndex = d3.bisect(sectionPositions, pos);
+    sectionIndex = Math.min(sections.size()-1, sectionIndex);
+    if (currentIndex !== sectionIndex){
+      dispatch.call('active', this, sectionIndex);
+      currentIndex = sectionIndex;
+    }
+    let prevIndex = Math.max(sectionIndex - 1, 0);
+    let prevTop = sectionPositions[prevIndex]
+    let progress = (pos - prevTop) / (sectionPositions[sectionIndex]   - prevTop);
+    dispatch.call('progress', this, currentIndex, progress)
+  }
+
+  scroll.container = function(value) {
+    if (arguments.legth === 0){
+      return container
+    }
+    container = value
+    return scroll
+  }
+  scroll.on = function(action, callback){
+    dispatch.on(action, callback)
+  };
+  return scroll;
+}
+
+let scroll = scroller().container(d3.select('.wrap'))
+
+scroll()
+
+function draw1 () {
+    d3.selectAll(".viz1").style("opacity", "1.0")
+}
+
+function draw2 () {
+    d3.selectAll(".viz1").style("opacity", "0")
+}
+
+function draw3 () {
+    d3.selectAll(".viz1").style("opacity", "0")
+}
+
+// Each of these is a function to draw each step of the scrollytelling
+let activationFunctions = [
+  draw1,
+  draw2,
+  draw3
+]
+
+let lastIndex, activeIndex = 0
+scroll.on('active', function(index){
+  d3.selectAll('.step')
+    .transition().duration(500)
+    .style('opacity', function (d, i) {return i === index ? 1 : 0.1;});
+    activeIndex = index
+  let sign = (activeIndex - lastIndex) < 0 ? -1 : 1;
+  let scrolledSections = d3.range(lastIndex + sign, activeIndex + sign, sign);
+  scrolledSections.forEach(i => {
+    activationFunctions[i]();
+  })
+  lastIndex = activeIndex;
+})
+
+/*
 // The svg for map
 var svg = d3.select("svg");
 var wrap = d3.select(".wrap").node();
@@ -30,9 +194,9 @@ function zoomed() {
   svg.selectAll(".myPath").style("stroke-width", 2 / d3.event.transform.k + "px");
   svg.selectAll(".myPath").attr("transform", d3.event.transform);
 }
+*/
 
-
-var viz1 = d3.select("#viz-1")
+var viz = d3.select("#viz")
     .append("svg")
         .attr("width", 600)
         .attr("height", 600)
@@ -48,6 +212,7 @@ function ready(error, tripspermonth, ...alldata) {
     console.log("Loaded " + alldata.length + " raw data files")
     //data = d3.merge(alldata)
 
+    // Building visualization 1:
     // Add x axis
     var x = d3.scaleTime()
       .domain(d3.extent(tripspermonth, 
@@ -55,7 +220,8 @@ function ready(error, tripspermonth, ...alldata) {
               return d3.timeParse("%b-%y")(d["Month of Starttime"]); 
           }))
       .range([ 0, 400]);
-    viz1.append("g")
+    viz.append("g")
+      .attr("class", "viz1")
       .attr("transform", "translate(0," + 400 + ")")
       .call(d3.axisBottom(x));
 
@@ -63,21 +229,25 @@ function ready(error, tripspermonth, ...alldata) {
     var y = d3.scaleLinear()
       .domain([0, d3.max(tripspermonth, function(d) {return +d["NumTrips"]; })])
       .range([ 400, 0 ]);
-    viz1.append("g")
+    viz.append("g")
+      .attr("class", "viz1")
       .call(d3.axisLeft(y));
 
     // Add the line
-    viz1.append("path")
+    viz.append("path")
+      .attr("class", "viz1")
       .datum(tripspermonth)
       .attr("fill", "none")
       .attr("stroke", "steelblue")
       .attr("stroke-width", 1.5)
       .attr("d", d3.line()
         .x(function(d) { 
+            //console.log(d["Month of Starttime"]);
             return x(d3.timeParse("%b-%y")(d["Month of Starttime"]));
           })
         .y(function(d) { return y(+d["NumTrips"]); })
         )
+
 
 }
 </script>
