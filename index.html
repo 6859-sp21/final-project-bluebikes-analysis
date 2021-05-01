@@ -255,8 +255,6 @@ function ready(error, tripspermonth, tripdur, ...alldata) {
       .attr("class", "viz2")
       .call(d3.axisLeft(scaleY_td));
       
-
-      
     // Add the line
     viz.append("path")
       .attr("class", "viz1")
@@ -271,7 +269,7 @@ function ready(error, tripspermonth, tripdur, ...alldata) {
           })
         .y(function(d) { return scaleY_tpm(+d["NumTrips"]); })
         )
-    console.log(tripdur[52]["Median Tripduration"])
+
     viz.append("path")
       .attr("class", "viz2")
       .datum(tripdur)
