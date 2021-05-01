@@ -15,6 +15,7 @@ body, html {
 
 .wrap {
     margin: 10px;
+    display: inline-block;
 }
 
 #sections {
@@ -29,7 +30,7 @@ z-index: 90;
     margin-bottom: 200px;
 }
 
-#viz {
+#viz{
     display: inline-block;
     position: fixed;
     top: 60px;
@@ -38,7 +39,6 @@ z-index: 90;
 
     height: 600px;
     width: 600px;
-    background-color: #ddd;
 }
 
 .viz1 {
@@ -50,26 +50,39 @@ z-index: 90;
 .viz3 {
     opacity: 0
 }
+.viz4 {
+    opacity: 0
+}
 </style>
 </head>
-
 <div class="wrap">
     <div id="sections">
          <section class="step">
             <div class="title">Part 1 text here:</div>
-         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</section>
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+         </section>
+
          <section class="step">
             <div class="title">Part 2 text here:</div>
             Euismod in pellentesque massa placerat duis. Sagittis vitae et leo duis ut diam. Sit amet luctus venenatis lectus magna fringilla urna porttitor. Pellentesque elit eget gravida cum. Ac tortor dignissim convallis aenean. Dui ut ornare lectus sit amet. Adipiscing diam donec adipiscing tristique risus nec feugiat in fermentum. Cursus euismod quis viverra nibh. Nisl nisi scelerisque eu ultrices vitae auctor. Purus semper eget duis at tellus at urna condimentum. Integer malesuada nunc vel risus.
          </section>
+
          <section class="step">
             <div class="title">Part 3 text here:</div>
             Neque gravida in fermentum et sollicitudin ac. Imperdiet massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Nisl pretium fusce id velit. Dignissim diam quis enim lobortis scelerisque fermentum dui. Elit ut aliquam purus sit amet. Lacus vel facilisis volutpat est. Dui sapien eget mi proin sed libero enim sed. Non nisi est sit amet facilisis. Libero nunc consequat interdum varius sit amet mattis vulputate.
          </section>
-         <section class="step"></section>
+
+         <section class="step">
+          <div class="title">Part 4 text here:</div>
+            Neque gravida in fermentum et sollicitudin ac. Imperdiet massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Nisl pretium fusce id velit. Dignissim diam quis enim lobortis scelerisque fermentum dui. Elit ut aliquam purus sit amet. Lacus vel facilisis volutpat est. Dui sapien eget mi proin sed libero enim sed. Non nisi est sit amet facilisis. Libero nunc consequat interdum varius sit amet mattis vulputate.
+         </section>
+         <section class="step">
+          <div class="title">Part 5 text here:</div>
+            Neque gravida in fermentum et sollicitudin ac. Imperdiet massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Nisl pretium fusce id velit. Dignissim diam quis enim lobortis scelerisque fermentum dui. Elit ut aliquam purus sit amet. Lacus vel facilisis volutpat est. Dui sapien eget mi proin sed libero enim sed. Non nisi est sit amet facilisis. Libero nunc consequat interdum varius sit amet mattis vulputate.
+         </section>
     </div>
     <div id="viz" ></div>
-    </div>
+</div>
 <script>
 
 // Scrollytelling source: https://towardsdatascience.com/how-i-created-an-interactive-scrolling-visualisation-with-d3-js-and-how-you-can-too-e116372e2c73
@@ -148,18 +161,25 @@ function draw1 () {
 function draw2 () {
     d3.selectAll(".viz1").style("opacity", "0")
     d3.selectAll(".viz2").style("opacity", "1")
+    d3.selectAll(".viz3").style("opacity", "0")
 }
 
 function draw3 () {
-    d3.selectAll(".viz1").style("opacity", "0")
     d3.selectAll(".viz2").style("opacity", "0")
+    d3.selectAll(".viz3").style("opacity", "1.0")
+    d3.selectAll(".viz4").style("opacity", "0")
 }
 
+function draw4 () {
+    d3.selectAll(".viz3").style("opacity", "0")
+    d3.selectAll(".viz4").style("opacity", "1.0")
+}
 // Each of these is a function to draw each step of the scrollytelling
 let activationFunctions = [
   draw1,
   draw2,
-  draw3
+  draw3,
+  draw4
 ]
 
 let lastIndex, activeIndex = 0
@@ -176,28 +196,6 @@ scroll.on('active', function(index){
   lastIndex = activeIndex;
 })
 
-/*
-// The svg for map
-var svg = d3.select("svg");
-var wrap = d3.select(".wrap").node();
-var width = +wrap.getBoundingClientRect().width,
-    height = +wrap.getBoundingClientRect().height;
-
-// Map and projection
-var projection = d3.geoMercator()
-    .scale((Math.min(width/ Math.PI, (height-20)/ Math.PI))*0.8)
-    .translate([width/2, (height-20)/2+20])
-
-// Map zoom
-var zoom = d3.zoom().scaleExtent([1, 8]).on("zoom", zoomed);
-
-function zoomed() {
-  svg.selectAll("g").style("stroke-width", 2 / d3.event.transform.k + "px");
-  svg.selectAll("g").attr("transform", d3.event.transform);
-  svg.selectAll(".myPath").style("stroke-width", 2 / d3.event.transform.k + "px");
-  svg.selectAll(".myPath").attr("transform", d3.event.transform);
-}
-*/
 
 var viz = d3.select("#viz")
     .append("svg")
@@ -206,13 +204,16 @@ var viz = d3.select("#viz")
     .append("g")
         .attr("transform",
               "translate(" + 50 + "," + 50 + ")");
+
+
 d3.queue()
   .defer(d3.csv, "https://6859-sp21.github.io/final-project-bluebikes-analysis/data/trips-per-month.csv")
   .defer(d3.csv, "https://6859-sp21.github.io/final-project-bluebikes-analysis/data/tripduration-by-week.csv")
+  .defer(d3.json, "https://6859-sp21.github.io/final-project-bluebikes-analysis/data/Boston_Neighborhoods.geojson")
   .defer(d3.csv, "https://6859-sp21.github.io/final-project-bluebikes-analysis/data/201903-bluebikes-tripdata.csv")
   .await(ready);
 
-function ready(error, tripspermonth, tripdur, ...alldata) {
+function ready(error, tripspermonth, tripdur, boston, ...alldata) {
     console.log("Loaded " + alldata.length + " raw data files")
     //data = d3.merge(alldata)
 
@@ -270,6 +271,7 @@ function ready(error, tripspermonth, tripdur, ...alldata) {
         .y(function(d) { return scaleY_tpm(+d["NumTrips"]); })
         )
 
+
     viz.append("path")
       .attr("class", "viz2")
       .datum(tripdur)
@@ -283,5 +285,29 @@ function ready(error, tripspermonth, tripdur, ...alldata) {
         //.y(function(d) {return 0;})
         .y(function(d) { return scaleY_td(+d["Median Tripduration"]); })
         )
+
+    // Building visualization 4:
+    var projection = d3.geoMercator()
+      .scale(100000)
+      .center([-71.057, 42.313])
+      .translate([600/2, 600/2]);
+
+    // A path generator
+    var path = d3.geoPath()
+        .projection(projection)
+
+    var vizsvg = d3.select("#viz svg");
+    vizsvg.append("g")
+      .attr("class", "viz4")
+      .selectAll("path")
+      .data(boston.features)
+      .enter().append("path")
+          .attr("fill", "#b8b8b8")
+          .attr("d", d3.geoPath()
+              .projection(projection)
+          )
+          .style("stroke", "#000")
+          .style("stroke-width", 0)
+
 }
 </script>
