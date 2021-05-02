@@ -34,12 +34,30 @@ z-index: 90;
     display: inline-block;
     position: fixed;
     top: 60px;
+    right: 10px;
     z-index: 1;
     margin-left: 0;
 
     height: 600px;
     width: 600px;
 }
+#slider {
+  position: fixed;
+  display: inline-block;
+  top: 600px;
+  width:400px;
+  right: 160px;
+  z-index: 1;
+}
+
+#sliderbox {
+  position: fixed;
+  display: inline-block;
+  top: 580px;
+  width:400px;
+  right: 160px;
+  z-index: 1;
+  }
 
 .viz1 {
     opacity: 1
@@ -104,8 +122,18 @@ z-index: 90;
          </section>
     </div>
     <div id="viz" ></div>
+    <span class="viz3" id="sliderbox">Slide for month</span>
+    <input class="viz3" type="range" name="slider" id="slider" min="0" max="24" value="18">
 </div>
 <script>
+
+let years  = [2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019, 
+              2020, 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2020,
+              2021, 2021, 2021]
+let months = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
+              0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
+              0, 1, 2]
+
 
 // Scrollytelling source: https://towardsdatascience.com/how-i-created-an-interactive-scrolling-visualisation-with-d3-js-and-how-you-can-too-e116372e2c73
 
@@ -159,7 +187,7 @@ function scroller(){
   }
 
   scroll.container = function(value) {
-    if (arguments.legth === 0){
+    if (arguments.length === 0){
       return container
     }
     container = value
@@ -333,7 +361,7 @@ function ready(error, tripspermonth, tripdur, boston, tripsperhour, ...alldata) 
       .call(d3.axisBottom(scaleX_tph));
         
     var scaleY_tph = d3.scaleLinear()
-      .domain([0, d3.max(filtered_tph, function(d) {return +d["NumTrips"]; })])
+      .domain([0, d3.max(tripsperhour, function(d) {return +d["NumTrips"]; })])
       .range([ 400, 0 ]);
     viz.append("g")
       .attr("class", "viz3")
@@ -341,6 +369,7 @@ function ready(error, tripspermonth, tripdur, boston, tripsperhour, ...alldata) 
           
     d3.select("#viz svg").append("g")
       .attr("class", "viz3")
+      .attr("id", "viz3bars")
       .attr("transform",
               "translate(" + 50 + "," + 50 + ")")
       .selectAll("rect")
@@ -378,6 +407,39 @@ function ready(error, tripspermonth, tripdur, boston, tripsperhour, ...alldata) 
           )
           .style("stroke", "#000")
           .style("stroke-width", 0)
+
+    function updateSlider(v) {
+      var tph_year = years[v]
+      var tph_month = months[v]
+      d3.select("#sliderbox").text(tph_month + "/" + tph_year)
+      console.log("slider " + v + ": " + tph_year + " " + tph_month)
+      var filtered_tph = tripsperhour.filter(function(d) {
+        d_time = d3.timeParse(tph_timeparse)(d["Month of Starttime"]);
+        return d_time.getMonth() == tph_month && d_time.getFullYear() == tph_year;
+      })
+      var sel = d3.select("#viz3bars")
+        .selectAll("rect")
+        .data(tripsperhour).remove()
+      var sel = d3.select("#viz3bars")
+        .selectAll("rect")
+        .data(filtered_tph)
+      sel.exit().remove()
+      sel.enter().append("rect")
+        .attr("x", function(d) { 
+          return scaleX_tph(+d["Hour of Starttime"]);
+        })
+        .attr("y", d => scaleY_tph(+d["NumTrips"]))
+        .attr("height", d => scaleY_tph(0)-scaleY_tph(+d["NumTrips"]))
+        .attr("width", scaleX_tph.bandwidth())
+        .attr("fill", "steelblue")
+        .attr("stroke", "steelblue")
+        .attr("stroke-width", 1.5);
+      
+    }
+
+    d3.select("#slider").on("input", function(){
+      updateSlider(+this.value)
+    })
 
 }
 </script>
