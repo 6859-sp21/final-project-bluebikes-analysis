@@ -28,6 +28,7 @@ z-index: 90;
 
 .step {
     margin-bottom: 200px;
+    height: 600px;
 }
 
 #viz{
@@ -60,7 +61,7 @@ z-index: 90;
   }
 
 .viz1 {
-    opacity: 1
+    opacity: 0
 }
 .viz2 {
     opacity: 0
@@ -80,6 +81,10 @@ z-index: 90;
 </head>
 <div class="wrap">
     <div id="sections">
+        <section class="step">
+            <div class="title">Bluebikes during the pandemic</div>
+         an analysis
+         </section>
          <section class="step">
             <div class="title">The April 2020 bluebike collapse</div>
          In March 2020, the novel coronavirus switched from being a distant concern to an immediate and pressing danger in the United States.
@@ -205,11 +210,15 @@ let scroll = scroller().container(d3.select('.wrap'))
 scroll()
 
 const durationTime = 200
+function draw0 () {
+    d3.selectAll(".viz0").transition().duration(durationTime).style("opacity", "1.0")
+    d3.selectAll(".viz1").transition().duration(durationTime).style("opacity", "0")
+}
 
 function draw1 () {
+    d3.selectAll(".viz0").transition().duration(durationTime).style("opacity", "0")
     d3.selectAll(".viz1").transition().duration(durationTime).style("opacity", "1.0")
     d3.selectAll(".viz2").transition().duration(durationTime).style("opacity", "0")
-    d3.selectAll(".viz3").transition().duration(durationTime).style("opacity", "0")
 }
 
 function draw2 () {
@@ -230,6 +239,7 @@ function draw4 () {
 }
 // Each of these is a function to draw each step of the scrollytelling
 let activationFunctions = [
+  draw0,
   draw1,
   draw2,
   draw3,
