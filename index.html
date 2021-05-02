@@ -80,6 +80,26 @@ z-index: 90;
   text-align: left;
   font-weight: bold;
 }
+
+.overlay {
+    fill: none !important;
+    pointer-events: all;
+    z-index: 100;
+}
+
+
+.focus circle {
+  fill: steelblue;
+}
+
+.focus text {
+  font-size: 14px;
+}
+
+.tooltip {
+  fill: white;
+  stroke: #000;
+}
 </style>
 </head>
 <div class="wrap">
@@ -344,14 +364,47 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
 -7 -71 -23 -525 -117 -93 -20 -354 -74 -579 -121 -226 -47 -415 -85 -422 -85 \
 -35 0 -25 379 16 611 54 299 173 599 334 842 67 101 182 247 194 247 4 0 227 \
 -308 496 -684z")
-       
+    var focus = d3.select("#viz svg").append("g")
+                .attr("class", "focus viz1")
+                .style("display", "none");
+
+    focus.append("circle")
+        .attr("r", 5);
+
+    focus.append("rect")
+        .attr("class", "tooltip")
+        .attr("width", 120)
+        .attr("height", 70)
+        .attr("x", 10)
+        .attr("y", -22)
+        .attr("rx", 4)
+        .attr("ry", 4);
+
+    focus.append("text")
+        .attr("class", "tooltip-x")
+        .attr("x", 18)
+        .attr("y", -2);
+
+    focus.append("text")
+        .attr("x", 18)
+        .attr("y", 18)
+        .text("Number of Trips: ");
+
+    focus.append("text")
+        .attr("class", "tooltip-y")
+        .attr("x", 18)
+        .attr("y", 36);
 
     // Building visualization 1:
+    tripspermonth.forEach(function(d) {
+      d.date = d3.timeParse("%b-%y")(d["Month of Starttime"]);
+      d.numTrips = +d["NumTrips"];
+    })
     // Add x axis
     var scaleX_tpm = d3.scaleTime()
       .domain(d3.extent(tripspermonth, 
           function(d) { 
-              return d3.timeParse("%b-%y")(d["Month of Starttime"]); 
+              return d.date; 
           }))
       .range([ 0, 400]);
     viz.append("g")
@@ -361,7 +414,7 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
 
     // Add Y axis
     var scaleY_tpm = d3.scaleLinear()
-      .domain([0, d3.max(tripspermonth, function(d) {return +d["NumTrips"]; })])
+      .domain([0, d3.max(tripspermonth, function(d) {return +d.numTrips; })])
       .range([ 400, 0 ]);
     viz.append("g")
       .attr("class", "viz1")
@@ -376,9 +429,9 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
       .attr("stroke-width", 1.5)
       .attr("d", d3.line()
         .x(function(d) { 
-            return scaleX_tpm(d3.timeParse("%b-%y")(d["Month of Starttime"]));
+            return scaleX_tpm(d.date);
           })
-        .y(function(d) { return scaleY_tpm(+d["NumTrips"]); })
+        .y(function(d) { return scaleY_tpm(+d.numTrips); })
         )
         
     // Building viz 2
@@ -482,6 +535,29 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
           )
           .style("stroke", "#000")
           .style("stroke-width", 0)
+
+
+    // This is for vis 1 but due to svg layering i need to put it last
+    d3.select("#viz svg").append("rect")
+      .attr("class", "overlay viz1")
+      .attr("transform",
+              "translate(" + 50 + "," + 50 + ")")
+      .attr("width", 400)
+      .attr("height", 400)
+      .on("mouseover", function() { focus.style("display", null); })
+      .on("mouseout", function() { focus.style("display", "none"); })
+      .on("mousemove", mousemove);
+
+    function mousemove() {
+        var x0 = scaleX_tpm.invert(d3.mouse(this)[0]),
+            i = d3.bisector(function(d) { return d.date; }).right(tripspermonth, x0, 1),
+            d0 = tripspermonth[i - 1],
+            d1 = tripspermonth[i],
+            d = x0 - d0.date > d1.date - x0 ? d1 : d0;
+        focus.attr("transform", "translate(" + (scaleX_tpm(d.date)+50) + "," + (scaleY_tpm(d.numTrips)+50) + ")");
+        focus.select(".tooltip-x").text(d3.timeFormat("%b-%y")(d.date));
+        focus.select(".tooltip-y").text(d.numTrips);
+    }
 
     function updateSlider(v) {
       var tph_year = years[v]
