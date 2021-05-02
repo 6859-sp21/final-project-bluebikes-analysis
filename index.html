@@ -53,28 +53,50 @@ z-index: 90;
 .viz4 {
     opacity: 0
 }
+.title {
+  font-family: Helvetica, sans-serif;
+  text-align: left;
+  font-weight: bold;
+}
 </style>
 </head>
 <div class="wrap">
     <div id="sections">
          <section class="step">
-            <div class="title">Part 1 text here:</div>
-         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            <div class="title">The April 2020 bluebike collapse</div>
+         In March 2020, the novel coronavirus switched from being a distant concern to an immediate and pressing danger in the United States.
+         The first week or two, people mostly operated as normal, taking more care to wash hands and avoid touching their face. For the 
+         aggregated ridership data, the real turning point was in April 2020, when the majority of the population stayed locked at home while
+         businesses shuttered and the case rate soared. The total number of Bluebikes trips fell well below its April 2019 levels and even below
+         the typical winter troughs, recovering that summer as biking became one of the safest forms of travel, but still not quite
+         reaching its 2019 highs. Whatever advantages Bluebikes had over competing modes of transportation in safety, it still lost riders
+         as people had fewer reasons to leave home. 
          </section>
 
          <section class="step">
-            <div class="title">Part 2 text here:</div>
-            Euismod in pellentesque massa placerat duis. Sagittis vitae et leo duis ut diam. Sit amet luctus venenatis lectus magna fringilla urna porttitor. Pellentesque elit eget gravida cum. Ac tortor dignissim convallis aenean. Dui ut ornare lectus sit amet. Adipiscing diam donec adipiscing tristique risus nec feugiat in fermentum. Cursus euismod quis viverra nibh. Nisl nisi scelerisque eu ultrices vitae auctor. Purus semper eget duis at tellus at urna condimentum. Integer malesuada nunc vel risus.
+            <div class="title">Median ride duration skyrocketed</div>
+            As the raw number of bike rides fell in April 2020, the median duration of a bike ride doubled from 10 minutes to 20. In the months
+            since, the median bike ride has shortened to a level near its historical average. While it's difficult to say exactly why people
+            started taking longer bike rides during the pandemic, we can speculate. The shorter bike rides to and from campus that
+            formed studenet commutes likely disappeared as students went home. Perceived danger of public transportation and ridesharing services
+            could have contributed to people choosing to use Bluebikes for longer trips in the summer days. Finally, with many traditional
+            leisure activities closed, some could have used Bluebikes to go on long joyrides in the summer sun.
          </section>
 
          <section class="step">
-            <div class="title">Part 3 text here:</div>
-            Neque gravida in fermentum et sollicitudin ac. Imperdiet massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Nisl pretium fusce id velit. Dignissim diam quis enim lobortis scelerisque fermentum dui. Elit ut aliquam purus sit amet. Lacus vel facilisis volutpat est. Dui sapien eget mi proin sed libero enim sed. Non nisi est sit amet facilisis. Libero nunc consequat interdum varius sit amet mattis vulputate.
+            <div class="title">The missing morning commute</div>
+            Bluebikes's aggregated trips per hour told a predictable story: bike use peaked during 8 AM and 5 PM as people commuted
+            to and from college/work, with a lot more overall rides in the warmer months. In the first few months post-pandemic, 
+            the 8 AM peak disappeared entirely, and it still hasn't recovered to anywhere near its old values. Instead we see
+            a distribution centered around 5-6 PM travel, perhaps due to some commuting and to some work-from-homers finishing up their
+            day and running errands.
          </section>
 
          <section class="step">
-          <div class="title">Part 4 text here:</div>
-            Neque gravida in fermentum et sollicitudin ac. Imperdiet massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Nisl pretium fusce id velit. Dignissim diam quis enim lobortis scelerisque fermentum dui. Elit ut aliquam purus sit amet. Lacus vel facilisis volutpat est. Dui sapien eget mi proin sed libero enim sed. Non nisi est sit amet facilisis. Libero nunc consequat interdum varius sit amet mattis vulputate.
+          <div class="title">Who was hit the hardest? </div>
+            The loss of the undergraduate student body hit MIT's Bluebikes stations hard, with the September 2020 ridership less than 
+            half that of the September 2019 at the Mass Ave stop. This pattern repeated city-wide, with traditional poles of 
+            Bluebikes travel losing disproportionately more riders with the schools and offices that drew people to them shuttered. 
          </section>
          <section class="step">
           <div class="title">Part 5 text here:</div>
@@ -325,7 +347,6 @@ function ready(error, tripspermonth, tripdur, boston, tripsperhour, ...alldata) 
       .data(filtered_tph)
       .enter().append("rect")
         .attr("x", function(d) { 
-          console.log(scaleX_tph(+d["Hour of Starttime"]));
           return scaleX_tph(+d["Hour of Starttime"]);
         })
         .attr("y", d => scaleY_tph(+d["NumTrips"]))
