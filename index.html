@@ -435,10 +435,14 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
         )
         
     // Building viz 2
+    tripdur.forEach(function(d) {
+      d.date = d3.timeParse("%d-%b-%y")(d["Week of Starttime"]);
+      d.dur = +d["Median Tripduration"];
+    })
     var scaleX_td = d3.scaleTime()
       .domain(d3.extent(tripdur,
         function(d) {
-          return d3.timeParse("%d-%b-%y")(d["Week of Starttime"]);
+          return d.date;
         }))
         .range([0, 400]);
     viz.append("g")
@@ -447,7 +451,7 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
       .call(d3.axisBottom(scaleX_td).tickFormat(d3.timeFormat("%b-%y")));
      
     var scaleY_td = d3.scaleLinear()
-      .domain([0, d3.max(tripdur, function(d) {return +d["Median Tripduration"]; })])
+      .domain([0, d3.max(tripdur, function(d) {return d.dur; })])
       .range([ 400, 0 ]);
     viz.append("g")
       .attr("class", "viz2")
@@ -461,11 +465,47 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
       .attr("stroke-width", 1.5)
       .attr("d", d3.line()
         .x(function(d) {
-          return scaleX_td(d3.timeParse("%d-%b-%y")(d["Week of Starttime"]));
+          return scaleX_td(d.date);
         })
         //.y(function(d) {return 0;})
-        .y(function(d) { return scaleY_td(+d["Median Tripduration"]); })
+        .y(function(d) { return scaleY_td(+d.dur); })
         )
+
+    var focus2 = d3.select("#viz svg").append("g")
+                .attr("class", "focus viz2")
+                .style("display", "none");
+
+    focus2.append("circle")
+        .attr("r", 5);
+
+    focus2.append("rect")
+        .attr("class", "tooltip")
+        .attr("width", 150)
+        .attr("height", 70)
+        .attr("x", 10)
+        .attr("y", -22)
+        .attr("rx", 4)
+        .attr("ry", 4);
+
+    focus2.append("text")
+        .attr("x", 18)
+        .attr("y", -2)
+        .text("Week of ");
+
+    focus2.append("text")
+        .attr("class", "tooltip-x")
+        .attr("x", 73)
+        .attr("y", -2);
+
+    focus2.append("text")
+        .attr("x", 18)
+        .attr("y", 18)
+        .text("Median Trip Duration: ");
+
+    focus2.append("text")
+        .attr("class", "tooltip-y")
+        .attr("x", 18)
+        .attr("y", 36);
         
     // Building viz 3
     const tph_timeparse = "%b-%y"
@@ -539,13 +579,20 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
 
     // This is for vis 1 but due to svg layering i need to put it last
     d3.select("#viz svg").append("rect")
-      .attr("class", "overlay viz1")
+      .attr("class", "overlay")
       .attr("transform",
               "translate(" + 50 + "," + 50 + ")")
       .attr("width", 400)
       .attr("height", 400)
-      .on("mouseover", function() { focus.style("display", null); })
-      .on("mouseout", function() { focus.style("display", "none"); })
+      .on("mouseover", function() { 
+        focus.style("display", null);
+        focus2.style("display", null);
+        })
+      .on("mouseout", function() { 
+        focus.style("display", "none");
+        focus2.style("display", "none"); 
+      })
+
       .on("mousemove", mousemove);
 
     function mousemove() {
@@ -557,6 +604,15 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
         focus.attr("transform", "translate(" + (scaleX_tpm(d.date)+50) + "," + (scaleY_tpm(d.numTrips)+50) + ")");
         focus.select(".tooltip-x").text(d3.timeFormat("%b-%y")(d.date));
         focus.select(".tooltip-y").text(d.numTrips);
+
+        var x0 = scaleX_tpm.invert(d3.mouse(this)[0]),
+            i = d3.bisector(function(d) { return d.date; }).right(tripdur, x0, 1),
+            d0 = tripdur[i - 1],
+            d1 = tripdur[i],
+            d = x0 - d0.date > d1.date - x0 ? d1 : d0;
+        focus2.attr("transform", "translate(" + (scaleX_td(d.date)+50) + "," + (scaleY_td(d.dur)+50) + ")");
+        focus2.select(".tooltip-x").text(d3.timeFormat("%d-%b-%y")(d.date));
+        focus2.select(".tooltip-y").text(d.dur);
     }
 
     function updateSlider(v) {
