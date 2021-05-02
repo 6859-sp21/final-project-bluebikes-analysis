@@ -58,7 +58,17 @@ z-index: 90;
   width:400px;
   right: 160px;
   z-index: 1;
-  }
+}
+
+#togglebox {
+  position: fixed;
+  display: inline-block;
+  top: 530px;
+  width:400px;
+  right: 160px;
+  z-index: 1;
+}
+
 .viz0 {
     opacity: 1
     overflow: hidden;
@@ -99,6 +109,70 @@ z-index: 90;
 .tooltip {
   fill: white;
   stroke: #000;
+}
+
+.switch {
+  position: fixed;
+  display: inline-block;
+  top: 550px;
+  width: 60px;
+  height: 34px;
+  z-index: 300;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider4 {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider4:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider4 {
+  background-color: #2196F3;
+}
+
+input:focus + .slider4 {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider4:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider4.round {
+  border-radius: 34px;
+}
+
+.slider4.round:before {
+  border-radius: 50%;
 }
 </style>
 </head>
@@ -154,6 +228,11 @@ z-index: 90;
     </div>
     <span class="viz3" id="sliderbox">Slide for month</span>
     <input class="viz3" type="range" name="slider" id="slider" min="0" max="24" value="18">
+    <span id="togglebox" class="viz4"> Click to toggle before/after March 2020 </span>
+    <label class="switch viz4">
+      <input type="checkbox" id="checkbox">
+      <span class="slider4 round"></span>
+    </label>
 </div>
 <script>
 
@@ -300,12 +379,14 @@ d3.queue()
   .defer(d3.csv, "https://6859-sp21.github.io/final-project-bluebikes-analysis/data/tripduration-by-week.csv")
   .defer(d3.json, "https://6859-sp21.github.io/final-project-bluebikes-analysis/data/TOWNSSURVEY_POLYM.json")
   .defer(d3.csv, "https://6859-sp21.github.io/final-project-bluebikes-analysis/data/tripsperhour.csv")
+  .defer(d3.csv, "https://6859-sp21.github.io/final-project-bluebikes-analysis/data/before-times-stations.csv")
+  .defer(d3.csv, "https://6859-sp21.github.io/final-project-bluebikes-analysis/data/after-times-stations.csv")
   .defer(d3.csv, "https://6859-sp21.github.io/final-project-bluebikes-analysis/data/201903-bluebikes-tripdata.csv")
   .await(ready);
 
-function ready(error, tripspermonth, tripdur, boston, tripsperhour, ...alldata) {
+function ready(error, tripspermonth, tripdur, boston, tripsperhour, beforestations, afterstations, ...alldata) {
     console.log("Loaded " + alldata.length + " raw data files")
-    //data = d3.merge(alldata)
+    var allstations = d3.merge([beforestations, afterstations])
     // Title page:
 
     viz.append("g")
@@ -579,6 +660,25 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
           .style("stroke", "#000")
           .style("stroke-width", 1)
 
+    var viz4color = d3.scaleLinear()
+      .domain([0,d3.max(allstations, function(d) {return +d["Number of Trips"]; })])
+      .range(["#cfedff", "#002080"]).clamp(true)
+
+    vizsvg.append("g")
+      .attr("class", "viz4")
+      .attr("id", "viz4circles")
+      .selectAll("circle")
+      .data(beforestations)
+      .enter().append("circle")
+        .attr("cx", function (d) { 
+          return projection([d["Start Station Longitude"],d["Start Station Latitude"]])[0]; })
+        .attr("cy", function (d) { 
+          return projection([d["Start Station Longitude"],d["Start Station Latitude"]])[1]; })
+        .attr("r", "3px")
+        .attr("fill", function(d) {
+          //console.log(viz4color(+d["Number of Trips"]));
+          return viz4color(+d["Number of Trips"]);
+        })
 
     // This is for vis 1 but due to svg layering i need to put it last
     d3.select("#viz svg").append("rect")
@@ -647,8 +747,53 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
       
     }
 
+    function updateMap(checked) {
+      console.log(checked)
+      if (checked) {
+        var sel = d3.select("#viz4circles")
+        .selectAll("circle")
+        .data(beforestations).remove()
+        
+        var sel = d3.select("#viz4circles")
+        .selectAll("circle")
+        .data(afterstations)
+        .enter().append("circle")
+          .attr("cx", function (d) { 
+            return projection([d["Start Station Longitude"],d["Start Station Latitude"]])[0]; })
+          .attr("cy", function (d) { 
+            return projection([d["Start Station Longitude"],d["Start Station Latitude"]])[1]; })
+          .attr("r", "3px")
+          .attr("fill", function(d) {
+            //console.log(viz4color(+d["Number of Trips"]));
+            return viz4color(+d["Number of Trips"]);
+          })
+      } else {
+        var sel = d3.select("#viz4circles")
+        .selectAll("circle")
+        .data(afterstations).remove()
+        
+        var sel = d3.select("#viz4circles")
+        .selectAll("circle")
+        .data(beforestations)
+        .enter().append("circle")
+          .attr("cx", function (d) { 
+            return projection([d["Start Station Longitude"],d["Start Station Latitude"]])[0]; })
+          .attr("cy", function (d) { 
+            return projection([d["Start Station Longitude"],d["Start Station Latitude"]])[1]; })
+          .attr("r", "3px")
+          .attr("fill", function(d) {
+            //console.log(viz4color(+d["Number of Trips"]));
+            return viz4color(+d["Number of Trips"]);
+          })
+      }
+    }
+
     d3.select("#slider").on("input", function(){
       updateSlider(+this.value)
+    })
+
+    d3.select("#checkbox").on("click", function(){
+      updateMap(this.checked)
     })
 
 }
