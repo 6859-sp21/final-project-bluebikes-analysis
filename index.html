@@ -153,27 +153,29 @@ let scroll = scroller().container(d3.select('.wrap'))
 
 scroll()
 
+const durationTime = 200
+
 function draw1 () {
-    d3.selectAll(".viz1").style("opacity", "1.0")
-    d3.selectAll(".viz2").style("opacity", "0")
-    d3.selectAll(".viz3").style("opacity", "0")
+    d3.selectAll(".viz1").transition().duration(durationTime).style("opacity", "1.0")
+    d3.selectAll(".viz2").transition().duration(durationTime).style("opacity", "0")
+    d3.selectAll(".viz3").transition().duration(durationTime).style("opacity", "0")
 }
 
 function draw2 () {
-    d3.selectAll(".viz1").style("opacity", "0")
-    d3.selectAll(".viz2").style("opacity", "1")
-    d3.selectAll(".viz3").style("opacity", "0")
+    d3.selectAll(".viz1").transition().duration(durationTime).style("opacity", "0")
+    d3.selectAll(".viz2").transition().duration(durationTime).style("opacity", "1")
+    d3.selectAll(".viz3").transition().duration(durationTime).style("opacity", "0")
 }
 
 function draw3 () {
-    d3.selectAll(".viz2").style("opacity", "0")
-    d3.selectAll(".viz3").style("opacity", "1.0")
-    d3.selectAll(".viz4").style("opacity", "0")
+    d3.selectAll(".viz2").transition().duration(durationTime).style("opacity", "0")
+    d3.selectAll(".viz3").transition().duration(durationTime).style("opacity", "1.0")
+    d3.selectAll(".viz4").transition().duration(durationTime).style("opacity", "0")
 }
 
 function draw4 () {
-    d3.selectAll(".viz3").style("opacity", "0")
-    d3.selectAll(".viz4").style("opacity", "1.0")
+    d3.selectAll(".viz3").transition().duration(durationTime).style("opacity", "0")
+    d3.selectAll(".viz4").transition().duration(durationTime).style("opacity", "1.0")
 }
 // Each of these is a function to draw each step of the scrollytelling
 let activationFunctions = [
@@ -249,7 +251,6 @@ function ready(error, tripspermonth, tripdur, boston, tripsperhour, ...alldata) 
       .attr("stroke-width", 1.5)
       .attr("d", d3.line()
         .x(function(d) { 
-            //console.log(d["Month of Starttime"]);
             return scaleX_tpm(d3.timeParse("%b-%y")(d["Month of Starttime"]));
           })
         .y(function(d) { return scaleY_tpm(+d["NumTrips"]); })
@@ -289,21 +290,21 @@ function ready(error, tripspermonth, tripdur, boston, tripsperhour, ...alldata) 
         )
         
     // Building viz 3
-    const tph_timeparse = "%m/%d/%Y %H:%M"
-    
+    const tph_timeparse = "%b-%y"
+        
+    var tph_year = 2020
+    var tph_month = 8
     var filtered_tph = tripsperhour.filter(function(d) {
-      //console.log(d["Hour of Starttime"]);
-      d_time = d3.timeParse(tph_timeparse)(d["Hour of Starttime"]);
-      //console.log(d_time)
-      return d_time.getMonth() == 8 && d_time.getFullYear() == 2020;
+      // console.log(d);
+      d_time = d3.timeParse(tph_timeparse)(d["Month of Starttime"]);
+      // console.log(d_time)
+      return d_time.getMonth() == tph_month && d_time.getFullYear() == tph_year;
     })
 
-    var scaleX_tph = d3.scaleTime()
-      .domain(d3.extent(filtered_tph,
-        function(d) {
-          return d3.timeParse(tph_timeparse)(d["Hour of Starttime"]);
-        }))
-        .range([0, 400]);
+    var scaleX_tph = d3.scaleBand()
+      .domain(d3.range(24))
+      .range([0, 400])
+      .padding(0.1);
     viz.append("g")
       .attr("class", "viz3")
       .attr("transform", "translate(0," + 400 + ")")
@@ -315,19 +316,24 @@ function ready(error, tripspermonth, tripdur, boston, tripsperhour, ...alldata) 
     viz.append("g")
       .attr("class", "viz3")
       .call(d3.axisLeft(scaleY_tph));
-      
-    viz.append("path")
+          
+    d3.select("#viz svg").append("g")
       .attr("class", "viz3")
-      .datum(filtered_tph)
-      .attr("fill", "none")
-      .attr("stroke", "steelblue")
-      .attr("stroke-width", 1.5)
-      .attr("d", d3.line()
-        .x(function(d) {
-          return scaleX_tph(d3.timeParse(tph_timeparse)(d["Hour of Starttime"]));
+      .attr("transform",
+              "translate(" + 50 + "," + 50 + ")")
+      .selectAll("rect")
+      .data(filtered_tph)
+      .enter().append("rect")
+        .attr("x", function(d) { 
+          console.log(scaleX_tph(+d["Hour of Starttime"]));
+          return scaleX_tph(+d["Hour of Starttime"]);
         })
-        .y(function(d) { return scaleY_tph(+d["NumTrips"]); })
-        )
+        .attr("y", d => scaleY_tph(+d["NumTrips"]))
+        .attr("height", d => scaleY_tph(0)-scaleY_tph(+d["NumTrips"]))
+        .attr("width", scaleX_tph.bandwidth())
+        .attr("fill", "steelblue")
+        .attr("stroke", "steelblue")
+        .attr("stroke-width", 1.5);
 
     // Building visualization 4:
     var projection = d3.geoMercator()
