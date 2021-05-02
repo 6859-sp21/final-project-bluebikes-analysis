@@ -50,6 +50,12 @@ z-index: 90;
   right: 160px;
   z-index: 1;
 }
+#main_title {
+  font-family: Helvetica, sans-serif;
+  text-align: left;
+  font-weight: bold;
+  font-size: 24px;
+}
 
 #sliderbox {
   position: fixed;
@@ -180,8 +186,12 @@ input:checked + .slider4:before {
 <div class="wrap">
     <div id="sections">
         <section class="step">
-            <div class="title">Bluebikes during the pandemic</div>
-         an analysis (example text pls change)
+            <div class="title" id="main_title">Bluebikes during the pandemic</div>
+         The COVID-19 pandemic drastically changed the way we live, work, and transport ourselves. Through analyzing
+         <a href="https://www.bluebikes.com/system-data">Bluebikes' publicly available datasets</a>, which record the start and stop time
+         and location of every bike ride, we visualized the changes in the way Massachusetts residents use the service in the era of the
+         coronavirus. 
+
          </section>
          <section class="step">
             <div class="title">The April 2020 bluebike collapse</div>
@@ -200,7 +210,7 @@ input:checked + .slider4:before {
              In the months
             since, the median bike ride has shortened to a level near its historical average. While it's difficult to say exactly why people
             started taking longer bike rides during the pandemic, we can speculate. The shorter bike rides to and from campus that
-            formed studenet commutes likely disappeared as students went home. Perceived danger of public transportation and ridesharing services
+            formed student commutes likely disappeared as students went home. Perceived danger of public transportation and ridesharing services
             could have contributed to people choosing to use Bluebikes for longer trips in the summer days. Finally, with many traditional
             leisure activities closed, some could have used Bluebikes to go on long joyrides in the summer sun.
          </section>
@@ -652,12 +662,13 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
       .data(boston.features)
       .enter().append("path")
           .attr("fill", "#b8b8b8")
+          .attr("town", d => d.properties.TOWN)
           .attr("d", d3.geoPath()
               .projection(projection)
           )
           .style("stroke", "#000")
           .style("stroke-width", 1)
-
+          
     var viz4color = d3.scaleLinear()
       .domain([0,d3.max(allstations, function(d) {return +d["Number of Trips"]; })])
       .range(["#cfedff", "#002080"]).clamp(true)
