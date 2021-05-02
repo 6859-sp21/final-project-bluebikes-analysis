@@ -1,0 +1,418 @@
+After Times?,Start Station Latitude,Start Station Longitude,Start Station Name,Number of Trips
+TRUE,42.16722556,-70.90555783,BCBS Hingham,4
+TRUE,42.39841773,-71.02390923,855 Broadway,6
+TRUE,42.36762049,-71.15656637,Nichols Ave. at Watertown Greenway,14
+TRUE,42.39678589,-71.10237297,Somerville Hospital,14
+TRUE,42.28887,-71.095003,2 Hummingbird Lane at Olmsted Green,15
+TRUE,42.39022671,-71.03857018,Chelsea Square,24
+TRUE,42.39636528,-71.03987179,Chelsea Station,25
+TRUE,42.34947178,-71.22000679,West Newton Armory,26
+TRUE,42.39453079,-71.03085595,Broadway at Gerrish Ave,26
+TRUE,42.39813565,-71.03070972,Cary Square,26
+TRUE,42.39301409,-71.03392497,Bellingham Square,31
+TRUE,42.40741,-71.0139,Revere City Hall,31
+TRUE,42.27600499,-71.03924982,BCBS Quincy,35
+TRUE,42.408088,-71.008942,Revere Public Library,36
+TRUE,42.2920896,-71.07841156,Park St at Norwell St,37
+TRUE,42.380998,-71.08721308,Washington St at Myrtle St,40
+TRUE,42.286012,-71.090986,Blue Hill Ave at Havelock St,43
+TRUE,42.40616124,-71.06041655,Kearins Playground,45
+TRUE,42.330528,-71.192861,Langley Lot,48
+TRUE,42.35574335,-71.18641943,Centre St at Washington St,50
+TRUE,42.2944167,-71.0783056,Park St at Norwell St,51
+TRUE,42.36466403,-71.17569387,160 Arsenal,55
+TRUE,42.3740832,-71.03274185,Airport T Stop - Bremen St at Brooks St,55
+TRUE,42.398365,-71.107818,Magoun Square at Trum Field,56
+TRUE,42.39782213,-71.1060667,Ball Sq,57
+TRUE,42.38363402,-71.10855814,Craigie at Summer St,72
+TRUE,42.379295,-71.027733,Day Sq,75
+TRUE,42.367621,-71.187936,Watertown Town Hall,95
+TRUE,42.38066931,-71.03907316,Marion St at White St,100
+TRUE,42.32956868,-71.19367272,Union St at Herrick Rd – Newton Centre Green Line,103
+TRUE,42.29442579,-71.07821761,Park St at Norwell St,105
+TRUE,42.35389024,-71.19943707,Washington St at Crafts St,106
+TRUE,42.35711921,-71.18604537,Bacon St at Washington St,121
+TRUE,42.396764,-71.102376,Broadway Opposite Norwood Ave  (Temp Winter Station),128
+TRUE,42.3496005,-71.22627497,West Newton,135
+TRUE,42.40994213,-71.1400932,Broadway at Grafton St,136
+TRUE,42.387151,-71.075978,18 Dorrance Warehouse,146
+TRUE,42.28072514,-71.08617242,Morton St T,152
+TRUE,42.36068456,-71.201462,Nonantum Library,155
+TRUE,42.398444,-71.107833,Trum Field @ Cedar St (Temp Winter Station),165
+TRUE,42.324173,-71.10196,Martha Eliot Health Center,170
+TRUE,42.300664,-71.060295,Fields Corner T Stop,172
+TRUE,42.41496265,-71.05279301,Hale Park,173
+TRUE,42.380078,-71.090098,Union Square East (Temp Winter Station),185
+TRUE,42.34178089,-71.03987017,645 Summer St,187
+TRUE,42.40615157,-71.06040745,Main Street at Carter Street,189
+TRUE,42.3525878,-71.06764905,Boylston St at Arlington St,197
+TRUE,42.40726052,-71.14382132,Mass Ave at Grafton St,206
+TRUE,42.34655124,-71.12833211,JFK Crossing at Harvard St. / Thorndike St.,219
+TRUE,42.36371276,-71.12459779,Innovation Lab - 125 Western Ave at Batten Way,222
+TRUE,42.37057753,-71.0355854,Gove St at Orleans St,222
+TRUE,42.28277901,-71.15728851,Centre St at Parkway YMCA,238
+TRUE,42.36411904,-71.02876782,Porzio Park,243
+TRUE,42.27462067,-71.09372553,Blue Hill Ave at Almont St,245
+TRUE,42.2773889,-71.09325,Mattapan Library,262
+TRUE,42.28198628,-71.07147925,Washington St at Fuller St,271
+TRUE,42.2771947,-71.06955614,Washington St at Walsh Playground,278
+TRUE,42.41034691,-71.05260458,Broadway at Maple St,281
+TRUE,42.41250451,-71.05842225,*,288
+TRUE,42.36444157,-71.18091374,N. Beacon St at N. Beacon Ct,297
+TRUE,42.34155985,-71.06886953,Washington St at Waltham St,301
+TRUE,42.29118035,-71.11773666,Northbourne Rd at Hyde Park Ave,306
+TRUE,42.29916498,-71.07345872,Washington St at Bradlee St,307
+TRUE,42.381056,-71.087083,Washington St @ New Washington St (Temp Winter Station),308
+TRUE,42.29175622,-71.0625918,Dorchester Ave at King St,309
+TRUE,42.27881158,-71.11687703,American Legion Hwy at Canterbury St,322
+TRUE,42.28072815,-71.13423757,Washington St at Denton Terr,322
+TRUE,42.28633199,-71.15344755,Centre St at W. Roxbury Post Office,324
+TRUE,42.40933007,-71.06381878,*,327
+TRUE,42.30412793,-71.07929528,Four Corners - 157 Washington St,328
+TRUE,42.38364093,-71.10868692,Conway Park @ Bleachery Ct (Temp Winter Station),339
+TRUE,42.27748444,-71.16341468,Spring St at Powell St,340
+TRUE,42.28484472,-71.11874517,Mt. Hope St at Hyde Park Ave,373
+TRUE,42.290333,-71.071806,Washington St at Talbot Ave,387
+TRUE,42.344952,-71.127351,JFK Crossing at Harvard St. / Thorndike St.,394
+TRUE,42.368019,-71.1242,Harvard Stadium: N. Harvard St at Soldiers Field Rd,402
+TRUE,42.309572,-71.0729,Columbia Rd at Ceylon St,413
+TRUE,42.28621295,-71.07942931,Thetford Ave at Norfolk St,415
+TRUE,42.36121165,-71.0653062,Cambridge St at Joy St,478
+TRUE,42.38240378,-71.03024304,Glendon St at Condor St,482
+TRUE,42.2873611,-71.071111,Codman Square Library,490
+TRUE,42.40985878,-71.06631868,Norman St at Kelvin St,494
+TRUE,42.31786021,-71.07798629,Blue Hill Ave at Southwood St,524
+TRUE,42.28630716,-71.12820532,Roslindale Village - Washington St,527
+TRUE,42.2863459,-71.1367213,Belgrade Ave at Walworth St,539
+TRUE,42.40016805,-71.14456963,Thorndike Field at Minuteman Bikeway,542
+TRUE,42.39239749,-71.15058332,Smith Pl at Wilson Rd,544
+TRUE,42.31869734,-71.06978148,Uphams Corner T Stop - Magnolia St at Dudley St,548
+TRUE,42.40935396,-71.14906519,Linwood St at Minuteman Bikeway,559
+TRUE,42.392525,-71.105587,Community Path at Lowell St,589
+TRUE,42.37971603,-71.09391332,Union Square - Somerville,600
+TRUE,42.324081,-71.083235,Walnut Ave at Warren St,609
+TRUE,42.36277389,-71.15764855,Arsenal Yards,650
+TRUE,42.37331213,-71.04102008,Boston East - 126 Border St,654
+TRUE,42.2945833,-71.087111,Talbot Ave At Blue Hill Ave,665
+TRUE,42.40725945,-71.05546381,Everett Square (Broadway at Chelsea St),685
+TRUE,42.29167943,-71.05726346,Adams St at Lonsdale St,722
+TRUE,42.41608484,-71.15315407,Railroad Lot and Minuteman Bikeway,732
+TRUE,42.27094707,-71.07337901,Central Ave at River St,754
+TRUE,42.267902,-71.093641,Mattapan T Stop,755
+TRUE,42.37207612,-71.15683131,Coolidge Sq.,797
+TRUE,42.33736915,-71.14485977,Beacon St at Englewood Ave,802
+TRUE,42.287072,-71.127754,Roslindale Village - South St,806
+TRUE,42.40328057,-71.0476264,Chelsea St at Vine St,812
+TRUE,42.2996667,-71.0605833,Fields Corner T Stop,814
+TRUE,42.29266593,-71.12119539,Archdale Rd at Washington St,822
+TRUE,42.292917,-71.06575,Shawmut T Stop,837
+TRUE,42.41427294,-71.04479656,Glendale Square (Ferry St at Broadway),837
+TRUE,42.30785224,-71.06512249,Bowdoin St at Quincy St,842
+TRUE,42.31930943,-71.09639924,The Dimock Center,842
+TRUE,42.38353252,-71.01619095,Bennington St at Byron St,857
+TRUE,42.37407974,-71.03276393,Airport T Stop - Bremen St at Brooks St,870
+TRUE,42.31727474,-71.06537004,Uphams Corner,878
+TRUE,42.316902,-71.091946,NCAAA - Walnut Ave at Crawford St,888
+TRUE,42.35980252,-71.05960783,Government Center - Cambridge St at Court St,890
+TRUE,42.34679008,-71.14549814,The Overlook at St. Gabriel's,898
+TRUE,42.39648358,-71.0654676,Broadway at Lynde St,904
+TRUE,42.36590788,-71.06446669,West End Park,914
+TRUE,42.29606705,-71.116012,Hyde Park Ave at Walk Hill St,923
+TRUE,42.339194,-71.06975,Harrison Ave at E. Dedham St,923
+TRUE,42.39329263,-71.0724476,Encore,942
+TRUE,42.30791,-71.080952,Grove Hall Library - 41 Geneva Ave,984
+TRUE,42.325333,-71.075354,Dudley Town Common - Mt Pleasant Ave at Blue Hill Ave,1026
+TRUE,42.33286289,-71.09218862,Whittier St Health Center,1051
+TRUE,42.36526032,-71.18573325,Watertown Sq,1072
+TRUE,42.350413,-71.07655,*,1073
+TRUE,42.2856944,-71.0641389,Ashmont T Stop,1077
+TRUE,42.379772,-71.027448,Chelsea St at Saratoga St,1112
+TRUE,42.39790817,-71.14797131,Discovery Park - 30 Acorn Park Drive,1119
+TRUE,42.39189812,-71.09745376,Somerville City Hall Annex,1146
+TRUE,42.28297568,-71.05466698,Gallivan Blvd at Adams St,1175
+TRUE,42.369536,-71.039431,East Boston Neighborhood Health Center - 20 Maverick Square,1178
+TRUE,42.38830554,-71.11067977,Craigie at Summer St,1211
+TRUE,42.347265,-71.088088,Boylston St at Massachusetts Ave,1215
+TRUE,42.3983606,-71.06373843,Broadway at Beacham St,1231
+TRUE,42.344827,-71.028664,ID Building East,1266
+TRUE,42.31787329,-71.08243078,Roxbury YMCA - Warren St at MLK Blvd,1280
+TRUE,42.309796,-71.092225,*,1281
+TRUE,42.33209606,-71.12845883,Tappan St at Brookline Hills MBTA,1313
+TRUE,42.35849449,-71.0542647,Broad St at Central St,1332
+TRUE,42.30604563,-71.11570891,Jamaica St at South St,1363
+TRUE,42.315692,-71.098634,Egleston Square - Atherton St at Washington St,1369
+TRUE,42.370744,-71.044201,The Eddy - New St at Sumner St,1412
+TRUE,42.36920617,-71.11710638,Harvard University River Houses at DeWolfe St / Cowperthwaite St,1415
+TRUE,42.3991826,-71.11104455,Ball Sq,1425
+TRUE,42.32784318,-71.12536222,Cypress St at Clark Playground,1432
+TRUE,42.36314499,-71.12298574,Innovation Lab - 125 Western Ave at Batten Way,1432
+TRUE,42.377022,-71.056605,Hayes Square - Vine St at Moulton St,1460
+TRUE,42.32538436,-71.12177596,High St at Cypress St,1487
+TRUE,42.32039374,-71.05355408,Sydney St at Carson St,1526
+TRUE,42.31218919,-71.03648586,University of Massachusetts Boston - Campus Center,1541
+TRUE,42.3106,-71.0539,Savin Hill T Stop - S Sydney St at Bay St,1571
+TRUE,42.33940659,-71.13489642,Washington Sq,1571
+TRUE,42.37408991,-71.06905997,Bunker Hill Community College,1613
+TRUE,42.32143814,-71.09126061,MLK Blvd at Washington St,1644
+TRUE,42.38078817,-71.15412891,700 Huron Ave,1653
+TRUE,42.38393225,-71.13961272,Vassal Lane at Tobin/VLUS,1654
+TRUE,42.379584,-71.095236,Union Square - Somerville,1689
+TRUE,42.303469,-71.085347,Franklin Park Zoo - Franklin Park Rd at Blue Hill Ave,1690
+TRUE,42.40231703,-71.12671129,Teele Square,1716
+TRUE,42.41143223,-71.06823265,*,1716
+TRUE,42.35732922,-71.1467354,New Balance - 20 Guest St,1825
+TRUE,42.34776345,-71.04535997,Boston Convention and Exhibition Center - Summer St at West Side Dr,1827
+TRUE,42.36085937,-71.08551858,MIT Hayward St at Amherst St,1857
+TRUE,42.3829443,-71.12449831,Graham and Parks School – Linnaean St at Walker St,1863
+TRUE,42.38762811,-71.08318716,East Somerville Library (Broadway and Illinois),1882
+TRUE,42.36774122,-71.03335975,Maverick St at Massport Path,1916
+TRUE,42.39044949,-71.1085595,Somerville Hospital,1973
+TRUE,42.406302,-71.132446,Clarendon Hill at Broadway,1990
+TRUE,42.34496783,-71.11040177,Beacon St at Hawes St,2028
+TRUE,42.38170676,-71.08377187,Washington St at Myrtle St,2032
+TRUE,42.320561,-71.06198,E Cottage St at Columbia Rd,2058
+TRUE,42.38522394,-71.01063069,Bennington St at Constitution Beach,2082
+TRUE,42.3936,-71.143941,84 Cambridgepark Dr,2095
+TRUE,42.32984299,-71.08386573,Dudley Square - Bolling Building,2102
+TRUE,42.36489293,-71.03497177,Piers Park,2118
+TRUE,42.35057,-71.166491,Oak Square - 615 Washington St,2123
+TRUE,42.3951715,-71.09850592,Broadway at Central St,2124
+TRUE,42.34734473,-71.10016808,Lansdowne T Stop,2140
+TRUE,42.35276621,-71.15988486,Faneuil St at Arlington St,2164
+TRUE,42.344796,-71.031614,ID Building West,2168
+TRUE,42.38717463,-71.08714389,Edgerly Education Center,2171
+TRUE,42.38614141,-71.0782814,Broadway St at Mt Pleasant St,2185
+TRUE,42.38445226,-71.07514855,Sullivan Square,2193
+TRUE,42.309054,-71.11543,Curtis Hall - South St at Centre St,2202
+TRUE,42.34895285,-71.16031677,Washington St at Brock St,2248
+TRUE,42.37544913,-71.03918549,Central Square East Boston,2281
+TRUE,42.34278116,-71.05747275,Broadway T Stop,2290
+TRUE,42.38165061,-71.13426982,Huron Ave At Vassal Lane,2345
+TRUE,42.34054262,-71.08138848,Massachusetts Ave at Columbus Ave,2366
+TRUE,42.317642,-71.056664,Ryan Playground - Dorchester Ave at Harbor View St,2404
+TRUE,42.40449,-71.123413,Packard Ave at Powderhouse Blvd,2458
+TRUE,42.35656092,-71.14167538,Boston Landing,2488
+TRUE,42.39108438,-71.09039426,Foss Park,2511
+TRUE,42.34024645,-71.15168806,Commonwealth Ave at Chiswick Rd,2531
+TRUE,42.392766,-71.129042,Rindge Avenue - O'Neill Library,2547
+TRUE,42.3121203,-71.1142981,Centre St at Seaverns Ave,2552
+TRUE,42.3977834,-71.10594005,Magoun Square at Trum Field,2556
+TRUE,42.3501061,-71.07720464,Boylston St at Dartmouth St,2594
+TRUE,42.306539,-71.107669,Williams St at Washington St,2658
+TRUE,42.378965,-71.068607,Edwards Playground - Main St at Eden St,2668
+TRUE,42.32033974,-71.05118036,JFK/UMass T Stop,2703
+TRUE,42.37487847,-71.06383499,Main St at Thompson Sq,2929
+TRUE,42.33833424,-71.1305093,Washington St at Griggs Rd,2933
+TRUE,42.386781,-71.006098,Orient Heights T Stop - Bennington St at Saratoga St,2945
+TRUE,42.38042947,-71.06055722,Medford St at Charlestown BCYF,2948
+TRUE,42.33376473,-71.12046447,Brookline Town Hall,2965
+TRUE,42.380857,-71.070629,Main St at Baldwin St,2965
+TRUE,42.34404051,-71.05737627,Dorchester Ave at Gillette Park,2989
+TRUE,42.36178741,-71.14393111,Western Ave at Richardson St,3002
+TRUE,42.332817,-71.081198,Washington St at Melnea Cass Blvd,3003
+TRUE,42.36575798,-71.07699394,Rogers St & Land Blvd,3092
+TRUE,42.37500235,-71.14871614,699 Mt Auburn St,3173
+TRUE,42.35585436,-71.05459746,Post Office Square,3181
+TRUE,42.39120972,-71.12260755,Mass Ave at Hadley/Walden,3244
+TRUE,42.3525761,-71.06764405,Boylston St at Charles St,3314
+TRUE,42.36769018,-71.07116282,Museum of Science,3406
+TRUE,42.36884408,-71.03977829,Maverick Square - Lewis Mall,3418
+TRUE,42.34286835,-71.14127841,Washington St at Egremont Rd,3424
+TRUE,42.400877,-71.116772,Powder House Circle - Nathan Tufts Park,3484
+TRUE,42.326599,-71.066498,Newmarket Square T Stop - Massachusetts Ave at Newmarket Square,3520
+TRUE,42.388966,-71.132788,Danehy Park,3549
+TRUE,42.38567579,-71.11412136,Wilson Square,3551
+TRUE,42.32760387,-71.1108917,S Huntington Ave at Heath St,3574
+TRUE,42.38267828,-71.14347895,Fresh Pond Reservation,3588
+TRUE,42.396105,-71.139459,Alewife Station at Russell Field,3614
+TRUE,42.31886468,-71.04536798,Geiger Gibson Community Health Center,3663
+TRUE,42.3294633,-71.0901582,Bartlett St at John Elliot Sq,3665
+TRUE,42.34854543,-71.06559185,Shawmut Ave at Oak St W,3685
+TRUE,42.386844,-71.09812,Somerville City Hall,3699
+TRUE,42.39558846,-71.14260614,Alewife MBTA at Steel Place,3700
+TRUE,42.37478629,-71.13320231,Mt Auburn,3725
+TRUE,42.346563,-71.128374,JFK Crossing at Harvard St. / Thorndike St.,3782
+TRUE,42.33047365,-71.05701685,Andrew T Stop - Dorchester Ave at Dexter St,3829
+TRUE,42.345733,-71.100694,Burlington Ave at Brookline Ave,3908
+TRUE,42.39223284,-71.07746601,Assembly Square T,3921
+TRUE,42.37535497,-71.03133336,Airport T Stop - Bremen St at Brooks St,3940
+TRUE,42.344137,-71.052608,State Street at Channel Center,3978
+TRUE,42.34881026,-71.04167744,Seaport Hotel - Congress St at Seaport Ln,4027
+TRUE,42.310579,-71.107341,Green Street T Stop - Green St at Amory St,4115
+TRUE,42.36161932,-71.08043551,One Memorial Drive,4152
+TRUE,42.36300378,-71.08974038,Galileo Galilei Way at Main Street,4174
+TRUE,42.343749,-71.062256,Troy Boston,4177
+TRUE,42.36054174,-71.08669817,MIT Carleton St at Amherst St,4181
+TRUE,42.34303291,-71.0668873,Washington St at Peters Park,4205
+TRUE,42.36550729,-71.0801376,75 Binney St,4243
+TRUE,42.34373095,-71.11614107,Beacon St at St. Paul St,4287
+TRUE,42.38100143,-71.10402523,30 Dane St,4357
+TRUE,42.375603,-71.064608,Main St at Austin St,4394
+TRUE,42.37927325,-71.10341903,Perry Park,4397
+TRUE,42.33664795,-71.0689446,Albany St at E. Brookline St,4464
+TRUE,42.33758601,-71.09627098,Wentworth Institute of Technology - Huntington Ave at Vancouver St,4483
+TRUE,42.39407224,-71.11133695,Community Path at Cedar Street,4496
+TRUE,42.345901,-71.063187,Ink Block - Harrison Ave at Herald St,4538
+TRUE,42.36608797,-71.08633604,Binney St / Sixth St,4568
+TRUE,42.35114198,-71.07329249,Boylston St at Berkeley St,4597
+TRUE,42.33554308,-71.1506152,Cleveland Circle,4606
+TRUE,42.36530095,-71.06092191,Canal St at Causeway St,4627
+TRUE,42.34894857,-71.15027189,Brighton Center - Washington St at Cambridge St,4694
+TRUE,42.38032335,-71.10878613,191 Beacon St,4747
+TRUE,42.35339051,-71.0445714,Fan Pier,4776
+TRUE,42.33949454,-71.08020781,Massachusetts Ave at Columbus Ave,4788
+TRUE,42.376369,-71.114025,Harvard University Gund Hall at Quincy St / Kirkland St,4897
+TRUE,42.33509899,-71.07903779,Washington St at Lenox St,4918
+TRUE,42.3382668,-71.13894682,Beacon St at Tappan St,4918
+TRUE,42.39638681,-71.12011306,Grove St at Community Path,4951
+TRUE,42.36154571,-71.13776207,Brighton Mills - 370 Western Ave,4961
+TRUE,42.354659,-71.053181,Purchase St at Pearl St,4964
+TRUE,42.3598254,-71.05979576,Government Center - Cambridge St at Court St,4985
+TRUE,42.36027371,-71.12852452,Honan Library,5045
+TRUE,42.38952436,-71.1169414,Elm St at White St,5113
+TRUE,42.377945,-71.116865,Harvard University / SEAS Cruft-Pierce Halls at 29 Oxford St,5117
+TRUE,42.38674802,-71.11901879,Lesley University,5135
+TRUE,42.344792,-71.044024,The Lawn on D,5191
+TRUE,42.33023071,-71.05060093,Columbia Rd at Tierney Community Center,5200
+TRUE,42.3510045,-71.04930013,Congress St at Sleeper St,5202
+TRUE,42.36919032,-71.11714125,Harvard University River Houses at DeWolfe St / Cowperthwaite St,5236
+TRUE,42.33978053,-71.1213335,Marion St at Harvard St,5263
+TRUE,42.37842,-71.105668,Beacon St at Washington / Kirkland,5299
+TRUE,42.32176526,-71.10984161,Hyde Square - Barbara St at Centre St,5323
+TRUE,42.397828,-71.130516,Linear Park - Mass. Ave. at Cameron Ave.,5510
+TRUE,42.383405,-71.107593,Conway Park - Somerville Avenue,5514
+TRUE,42.37967448,-71.09391324,Union Square - Somerville,5645
+TRUE,42.357143,-71.050699,Rowes Wharf at Atlantic Ave,5668
+TRUE,42.3481,-71.03764,Congress St at Northern Ave,5675
+TRUE,42.316966,-71.104374,Stony Brook T Stop,5741
+TRUE,42.3529457,-71.05656401,Surface Rd at Summer St,5813
+TRUE,42.35155309,-71.07569031,Clarendon St at Newbury St,5838
+TRUE,42.36356016,-71.08216792,Kendall Street,5987
+TRUE,42.351146,-71.066289,Stuart St at Charles St,6032
+TRUE,42.35533502,-71.05822917,Arch St at Franklin St,6072
+TRUE,42.3494261,-71.0620996,Harrison Ave at Bennet St,6181
+TRUE,42.34954403,-71.07242074,Stuart St at Berkeley St,6194
+TRUE,42.36041775,-71.05752244,Congress St at Boston City Hall,6238
+TRUE,42.34619708,-71.10728681,St Mary's,6274
+TRUE,42.379011,-71.119945,Harvard Law School at Mass Ave / Jarvis St,6341
+TRUE,42.36912158,-71.11638672,Harvard University River Houses at DeWolfe St / Cowperthwaite St,6386
+TRUE,42.380287,-71.125107,Harvard University Radcliffe Quadrangle at Shepard St / Garden St,6406
+TRUE,42.35204262,-71.0705781,Boylston St at Arlington St,6565
+TRUE,42.34835863,-71.13997217,Commonwealth Ave at Kelton St,6580
+TRUE,42.358155,-71.052163,Surface Rd at India St,6583
+TRUE,42.378338,-71.048927,Spaulding Rehabilitation Hospital - Charlestown Navy Yard,6585
+TRUE,42.35182807,-71.06781138,Park Plaza at Charles St S.,6668
+TRUE,42.351356,-71.059367,Chinatown Gate Plaza,6704
+TRUE,42.32293117,-71.10014141,Jackson Square T Stop,6715
+TRUE,42.34254914,-71.07421449,Tremont St at W. Dedham St,6870
+TRUE,42.37250865,-71.11305356,Verizon Innovation Hub 10 Ware Street,6978
+TRUE,42.3577531,-71.10393405,*,7161
+TRUE,42.300923,-71.114249,Forest Hills,7209
+TRUE,42.349496,-71.10057592,Silber Way,7718
+TRUE,42.34157472,-71.0689044,Washington St at Waltham St,7723
+TRUE,42.34011512,-71.10061884,Colleges of the Fenway - Fenway at Avenue Louis Pasteur,7726
+TRUE,42.396969,-71.123024,Davis Square,7748
+TRUE,42.3722168,-71.12188071,Harvard Kennedy School at Bennett St / Eliot St,7751
+TRUE,42.3334,-71.02495,Farragut Rd at E. 6th St,7777
+TRUE,42.341332,-71.076847,South End Library - Tremont St at W Newton St,7930
+TRUE,42.33274392,-71.11626681,Brookline Village - Station Street at MBTA,7939
+TRUE,42.37119728,-71.09759867,Cambridge Dept. of Public Works -147 Hampshire St.,7988
+TRUE,42.33639915,-71.07306711,Boston Medical Center - E Concord St at Harrison Ave,8046
+TRUE,42.366981,-71.076472,CambridgeSide Galleria - CambridgeSide PL at Land Blvd,8257
+TRUE,42.3388956,-71.08149976,Tremont St at Northampton St,8339
+TRUE,42.36435589,-71.06959369,Blossom St at Charles St,8368
+TRUE,42.387995,-71.119084,Porter Square Station,8380
+TRUE,42.33595898,-71.046229,W Broadway at Dorchester St,8397
+TRUE,42.345392,-71.069616,Tremont St at E Berkeley St,8434
+TRUE,42.34807412,-71.07657015,Back Bay T Stop - Dartmouth St at Stuart St,8457
+TRUE,42.34827839,-71.08044855,Ring Rd,8570
+TRUE,42.34521562,-71.06384032,Harrison Ave at Mullins Way,8578
+TRUE,42.372969,-71.094445,Cambridge St - at Columbia St / Webster Ave,8642
+TRUE,42.36224179,-71.08311072,One Broadway / Kendall Sq at Main St / 3rd St,8655
+TRUE,42.36599433,-71.09522222,Harvard St at Greene-Rose Heritage Park,8678
+TRUE,42.373379,-71.111075,Cambridge Main Library at Broadway / Trowbridge St,8728
+TRUE,42.369885,-71.069957,EF - North Point Park,8744
+TRUE,42.35148194,-71.04436085,Seaport Square - Seaport Blvd at Northern Ave,8879
+TRUE,42.3339227,-71.10446509,One Brigham Circle,8911
+TRUE,42.37150494,-71.07249312,Child St at North St,8939
+TRUE,42.34960945,-71.10391524,700 Commonwealth Ave.,8971
+TRUE,42.34474225,-71.07648162,Columbus Ave at W. Canton St,9072
+TRUE,42.36254854,-71.05737358,Boston Public Market,9092
+TRUE,42.33658556,-71.09886997,Huntington Ave at Mass Art,9156
+TRUE,42.352175,-71.055547,South Station - 700 Atlantic Ave,9166
+TRUE,42.336448,-71.023739,Murphy Skating Rink - 1880 Day Blvd,9235
+TRUE,42.36426344,-71.1182757,Soldiers Field Park - 111 Western Ave,9263
+TRUE,42.37412455,-71.054812,Charlestown Navy Yard,9266
+TRUE,42.354979,-71.063348,Tremont St at West St,9295
+TRUE,42.373231,-71.120886,Harvard Square at Brattle St / Eliot St,9303
+TRUE,42.366621,-71.114214,Harvard University Housing - 115 Putnam Ave at Peabody Terrace,9310
+TRUE,42.33462893,-71.10407918,Brigham Circle - Francis St at Huntington Ave,9420
+TRUE,42.353334,-71.137313,Union Square - Brighton Ave at Cambridge St,9491
+TRUE,42.371848,-71.060292,Warren St at Chelsea St,9543
+TRUE,42.34958942,-71.07946779,Boylston St at Exeter St,9563
+TRUE,42.37438409,-71.10015746,Inman Square at Springfield St.,9601
+TRUE,42.35154735,-71.12126246,Commonwealth Ave At Babcock St,9617
+TRUE,42.34135616,-71.08336954,Mass Ave T Station,9670
+TRUE,42.351586,-71.04569256,Watermark Seaport - Boston Wharf Rd at Seaport Blvd,9676
+TRUE,42.335741,-71.03877,South Boston Library - 646 E Broadway,9717
+TRUE,42.347241,-71.105301,Park Dr at Buswell St,9981
+TRUE,42.36955298,-71.08579015,Kennedy-Longfellow School 158 Spring St,10093
+TRUE,42.34652004,-71.08065777,Prudential Center - 101 Huntington Ave,10150
+TRUE,42.370677,-71.076529,Lechmere Station at Cambridge St / First St,10224
+TRUE,42.36544486,-71.08277142,Third at Binney,10287
+TRUE,42.350406,-71.108279,B.U. Central - 725 Comm. Ave.,10311
+TRUE,42.34992828,-71.07739207,Copley Square - Dartmouth St at Boylston St,10329
+TRUE,42.34953017,-71.13022771,Harvard Ave at Brainerd Rd,10448
+TRUE,42.35991176,-71.05142981,Aquarium T Stop - 200 Atlantic Ave,10691
+TRUE,42.36346469,-71.10057324,Lafayette Square at Mass Ave / Main St / Columbia St,10752
+TRUE,42.348706,-71.097009,Kenmore Square,10767
+TRUE,42.35892,-71.057629,Boston City Hall - 28 State St,10791
+TRUE,42.35668335,-71.06166646,Tremont St at Hamilton Pl,10797
+TRUE,42.3636929,-71.0875672,Ames St at Broadway,10998
+TRUE,42.356052,-71.069849,Beacon St at Charles St,11021
+TRUE,42.34924377,-71.0972821,Deerfield St at Commonwealth Ave,11086
+TRUE,42.34922469,-71.13275303,Commonwealth Ave at Griggs St,11192
+TRUE,42.370803,-71.104412,359 Broadway - Broadway at Fayette Street,11218
+TRUE,42.36178044,-71.10809952,Dana Park,11281
+TRUE,42.363796,-71.129164,175 N Harvard St,11328
+TRUE,42.37207658,-71.08995434,Berkshire Street at Cambridge Street,11351
+TRUE,42.3391085,-71.0514432,W Broadway at D St,11394
+TRUE,42.36860524,-71.09930186,*,11404
+TRUE,42.36264779,-71.10006094,University Park,11435
+TRUE,42.331184,-71.095171,Roxbury Crossing T Stop - Columbus Ave at Tremont St,11708
+TRUE,42.366277,-71.09169,One Kendall Square at Hampshire St / Portland St,11759
+TRUE,42.33741749,-71.10286117,HMS/HSPH - Avenue Louis Pasteur at Longwood Ave,11967
+TRUE,42.35096144,-71.07782811,Dartmouth St at Newbury St,12071
+TRUE,42.348762,-71.082383,Boylston St at Fairfield St,12603
+TRUE,42.36242784,-71.08495474,Kendall T,12899
+TRUE,42.34740621,-71.08678415,Boylston St at Massachusetts Ave,13048
+TRUE,42.36135838,-71.09670274,Mass Ave at Albany St,13141
+TRUE,42.341814,-71.090179,Northeastern University - North Parking Lot,13270
+TRUE,42.352409,-71.062679,Chinatown T Stop,14300
+TRUE,42.35317809,-71.04817357,Seaport Blvd at Sleeper St,14332
+TRUE,42.341598,-71.123338,Coolidge Corner - Beacon St at Centre St,15094
+TRUE,42.33624445,-71.08798564,Ruggles T Stop - Columbus Ave at Melnea Cass Blvd,15124
+TRUE,42.348717,-71.085954,Newbury St at Hereford St,15205
+TRUE,42.3385146,-71.07404083,Washington St at Rutland St,15258
+TRUE,42.35169202,-71.11903489,Commonwealth Ave at Agganis Way,15335
+TRUE,42.365673,-71.064263,Nashua Street at Red Auerbach Way,15858
+TRUE,42.363871,-71.050877,Lewis Wharf at Atlantic Ave,16611
+TRUE,42.36213123,-71.09115601,MIT Stata Center at Vassar St / Main St,16925
+TRUE,42.36125722,-71.06528744,Cambridge St at Joy St,17425
+TRUE,42.34369056,-71.10235287,Landmark Center - Brookline Ave at Park Dr,17596
+TRUE,42.366426,-71.105495,Central Sq Post Office / Cambridge City Hall at Mass Ave / Pleasant St,17970
+TRUE,42.3572185,-71.11387163,Lower Cambridgeport at Magazine St / Riverside Rd,18078
+TRUE,42.35560121,-71.10394478,MIT Vassar St,18783
+TRUE,42.338629,-71.1065,Longwood Ave at Binney St,19057
+TRUE,42.352261,-71.123831,Packard's Corner - Commonwealth Ave at Brighton Ave,19422
+TRUE,42.35553629,-71.07286871,Mugar Way at Beacon St,19602
+TRUE,42.373268,-71.118579,Harvard Square at Mass Ave/ Dunster,19722
+TRUE,42.35082681,-71.08981088,Beacon St at Massachusetts Ave,20713
+TRUE,42.3625,-71.08822,Ames St at Main St,20817
+TRUE,42.3595732,-71.10129476,MIT Pacific St at Purrington St,21153
+TRUE,42.34465063,-71.09732501,Boylston St at Jersey St,22607
+TRUE,42.362811,-71.056067,Cross St at Hanover St,22951
+TRUE,42.3581,-71.093198,MIT at Mass Ave / Amherst St,26555
+TRUE,42.34366583,-71.08582377,Christian Science Plaza - Massachusetts Ave at Westland Ave,27877
+TRUE,42.36507,-71.1031,Central Square at Mass Ave / Essex St,32758
+TRUE,42.36079297,-71.07118962,Charles Circle - Charles St at Cambridge St,34125
