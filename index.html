@@ -411,7 +411,7 @@ function ready(error, tripspermonth, tripdur, boston, tripsperhour, ...alldata) 
     function updateSlider(v) {
       var tph_year = years[v]
       var tph_month = months[v]
-      d3.select("#sliderbox").text(tph_month + "/" + tph_year)
+      d3.select("#sliderbox").text(tph_month+1 + "/" + tph_year)
       console.log("slider " + v + ": " + tph_year + " " + tph_month)
       var filtered_tph = tripsperhour.filter(function(d) {
         d_time = d3.timeParse(tph_timeparse)(d["Month of Starttime"]);
