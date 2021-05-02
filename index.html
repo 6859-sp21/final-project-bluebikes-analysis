@@ -90,8 +90,8 @@ z-index: 90;
          </section>
          <section class="step">
             <div class="title">The April 2020 bluebike collapse</div>
-         In March 2020, the novel coronavirus switched from being a distant concern to an immediate and pressing danger in the United States.
-         The first week or two, people mostly operated as normal, taking more care to wash hands and avoid touching their face. For the 
+         In March 2020, the novel coronavirus switched from being a distant concern to an immediate and pressing danger in the United States. </br>
+         The first week or two, people mostly operated as normal, taking more care to wash their hands and avoid touching their face. For the 
          aggregated ridership data, the real turning point was in April 2020, when the majority of the population stayed locked at home while
          businesses shuttered and the case rate soared. The total number of Bluebikes trips fell well below its April 2019 levels and even below
          the typical winter troughs, recovering that summer as biking became one of the safest forms of travel, but still not quite
@@ -101,7 +101,8 @@ z-index: 90;
 
          <section class="step">
             <div class="title">Median ride duration skyrocketed</div>
-            As the raw number of bike rides fell in April 2020, the median duration of a bike ride doubled from 10 minutes to 20. In the months
+            As the raw number of bike rides fell in April 2020, the median duration of a bike ride doubled from 10 minutes to 20. </br>
+             In the months
             since, the median bike ride has shortened to a level near its historical average. While it's difficult to say exactly why people
             started taking longer bike rides during the pandemic, we can speculate. The shorter bike rides to and from campus that
             formed studenet commutes likely disappeared as students went home. Perceived danger of public transportation and ridesharing services
@@ -356,7 +357,7 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
     viz.append("g")
       .attr("class", "viz1")
       .attr("transform", "translate(0," + 400 + ")")
-      .call(d3.axisBottom(scaleX_tpm));
+      .call(d3.axisBottom(scaleX_tpm).tickFormat(d3.timeFormat("%b-%y")));
 
     // Add Y axis
     var scaleY_tpm = d3.scaleLinear()
@@ -390,7 +391,7 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
     viz.append("g")
       .attr("class", "viz2")
       .attr("transform", "translate(0," + 400 + ")")
-      .call(d3.axisBottom(scaleX_td));
+      .call(d3.axisBottom(scaleX_td).tickFormat(d3.timeFormat("%b-%y")));
      
     var scaleY_td = d3.scaleLinear()
       .domain([0, d3.max(tripdur, function(d) {return +d["Median Tripduration"]; })])
