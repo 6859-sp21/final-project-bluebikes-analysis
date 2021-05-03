@@ -14,7 +14,7 @@ body, html {
 }
 
 .wrap {
-    margin: 10px;
+    margin: 50px;
     display: inline-block;
 }
 
@@ -668,7 +668,7 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
           )
           .style("stroke", "#000")
           .style("stroke-width", 1)
-          
+
     var viz4color = d3.scaleLinear()
       .domain([0,d3.max(allstations, function(d) {return +d["Number of Trips"]; })])
       .range(["#cfedff", "#002080"]).clamp(true)
