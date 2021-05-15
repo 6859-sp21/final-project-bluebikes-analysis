@@ -11,19 +11,33 @@
 body, html {
   font-family: Helvetica, sans-serif;
   text-align: left;
+  margin: 0;
 }
 
 .wrap {
-    margin: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
     display: inline-block;
 }
 
+#bluebar {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 3600px;
+  top: 0px;
+  background-color: #1D428A;
+  margin-right: 20px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
 #sections {
-position: relative;
-display: inline-block;
-width: 300px;
-top: 0px;
-z-index: 90;
+  position: relative;
+  display: inline-block;
+  width: 300px;
+  top: 0px;
+  z-index: 90;
 }
 
 .step {
@@ -52,7 +66,7 @@ z-index: 90;
 #slider, #sliderbox{
   position: fixed;
   display: inline-block;
-  left: 500px;
+  left: 550px;
   z-index: 1;
 }
 
@@ -60,7 +74,7 @@ z-index: 90;
 #togglebox {
   position: fixed;
   display: inline-block;
-  left: 500px;
+  left: 550px;
   z-index: 1;
 }
 
@@ -109,7 +123,7 @@ z-index: 90;
 .switch {
   position: fixed;
   display: inline-block;
-  left: 800px;
+  left: 850px;
   width: 60px;
   height: 34px;
   z-index: 300;
@@ -172,6 +186,7 @@ input:checked + .slider4:before {
 </style>
 </head>
 <div class="wrap">
+    <div id="bluebar"></div>
     <div id="sections">
         <section class="step">
             <div class="title" id="main_title">Bluebikes during the pandemic</div>
@@ -361,7 +376,7 @@ scroll.on('active', function(index){
 })
 
 const vizsize = window.innerWidth/2;
-const innervizsize = vizsize - 200; 
+const innervizsize = vizsize - 250; 
 
 var viz = d3.select("#viz")
     .attr("width", vizsize)
@@ -371,7 +386,7 @@ var viz = d3.select("#viz")
         .attr("height", vizsize)
     .append("g")
         .attr("transform",
-              "translate(" + 50 + "," + 50 + ")");
+              "translate(" + 100 + "," + 50 + ")");
 
 
 d3.queue()
@@ -476,9 +491,6 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
         .attr("x", 18)
         .attr("y", 36);
 
-    const vizsize = 600
-    const innervizsize = 400
-
     // Building visualization 1:
     tripspermonth.forEach(function(d) {
       d.date = d3.timeParse("%b-%y")(d["Month of Starttime"]);
@@ -531,7 +543,7 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
     viz.append("text")
       .attr("class", "viz1")
       .attr("transform", "rotate(-90)")
-      .attr("y", -40)
+      .attr("y", -80)
       .attr("x", 0 - (innervizsize/2))
       .attr("dy", "1em")
       .style("text-anchor", "middle")
@@ -655,11 +667,11 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
 
     d3.select("#slider")
       .style("width", innervizsize + "px")
-      .style("top", innervizsize + 150 +"px")
+      .style("top", innervizsize + 180 +"px")
 
     d3.select("#sliderbox")
       .style("width", innervizsize + "px")
-      .style("top", innervizsize + 130 +"px")
+      .style("top", innervizsize + 160 +"px")
 
     var scaleX_tph = d3.scaleBand()
       .domain(d3.range(24))
@@ -681,7 +693,7 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
       .attr("class", "viz3")
       .attr("id", "viz3bars")
       .attr("transform",
-              "translate(" + 50 + "," + 50 + ")")
+              "translate(" + 100 + "," + 50 + ")")
       .selectAll("rect")
       .data(filtered_tph)
       .enter().append("rect")
@@ -705,7 +717,7 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
     viz.append("text")
       .attr("class", "viz3")
       .attr("transform", "rotate(-90)")
-      .attr("y", -60)
+      .attr("y", -70)
       .attr("x", 0 - (innervizsize/2))
       .attr("dy", "1em")
       .style("text-anchor", "middle")
@@ -720,14 +732,14 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
 
     // Building visualization 4:
     d3.select("#togglebox")
-      .style("top", innervizsize+130+"px")
+      .style("top", innervizsize+150+"px")
     d3.select(".switch")
-      .style("top", innervizsize+120+"px")
+      .style("top", innervizsize+130+"px")
 
     var projection = d3.geoMercator()
       .scale(80000)
       .center([-71.057, 42.313])
-      .translate([vizsize/2, vizsize/2]);
+      .translate([innervizsize/2, innervizsize/2]);
 
     // A path generator
     var path = d3.geoPath()
@@ -739,6 +751,8 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
     var vizsvg = d3.select("#viz svg");
     vizsvg.append("g")
       .attr("class", "viz4")
+      .attr("transform",
+              "translate(" + 100 + "," + 50 + ")")
       .selectAll("path")
       .data(boston.features)
       .enter().append("path")
@@ -757,6 +771,8 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
     vizsvg.append("g")
       .attr("class", "viz4")
       .attr("id", "viz4circles")
+      .attr("transform",
+              "translate(" + 100 + "," + 50 + ")")
       .selectAll("circle")
       .data(beforestations)
       .enter().append("circle")
@@ -782,7 +798,7 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
     d3.select("#viz svg").append("rect")
       .attr("class", "overlay")
       .attr("transform",
-              "translate(" + 50 + "," + 50 + ")")
+              "translate(" + 100 + "," + 50 + ")")
       .attr("width", innervizsize)
       .attr("height", innervizsize)
       .on("mouseover", function() { 
@@ -802,7 +818,7 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
             d0 = tripspermonth[i - 1],
             d1 = tripspermonth[i],
             d = x0 - d0.date > d1.date - x0 ? d1 : d0;
-        focus.attr("transform", "translate(" + (scaleX_tpm(d.date)+50) + "," + (scaleY_tpm(d.numTrips)+50) + ")");
+        focus.attr("transform", "translate(" + (scaleX_tpm(d.date)+100) + "," + (scaleY_tpm(d.numTrips)+50) + ")");
         focus.select(".tooltip-x").text(d3.timeFormat("%b-%y")(d.date));
         focus.select(".tooltip-y").text(d.numTrips);
 
@@ -811,7 +827,7 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
             d0 = tripdur[i - 1],
             d1 = tripdur[i],
             d = x0 - d0.date > d1.date - x0 ? d1 : d0;
-        focus2.attr("transform", "translate(" + (scaleX_td(d.date)+50) + "," + (scaleY_td(d.dur)+50) + ")");
+        focus2.attr("transform", "translate(" + (scaleX_td(d.date)+100) + "," + (scaleY_td(d.dur)+50) + ")");
         focus2.select(".tooltip-x").text(d3.timeFormat("%d-%b-%y")(d.date));
         focus2.select(".tooltip-y").text(d3.format(".1f")(d.dur) + " minutes");
     }
