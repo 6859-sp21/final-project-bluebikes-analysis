@@ -476,6 +476,9 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
         .attr("x", 18)
         .attr("y", 36);
 
+    const vizsize = 600
+    const innervizsize = 400
+
     // Building visualization 1:
     tripspermonth.forEach(function(d) {
       d.date = d3.timeParse("%b-%y")(d["Month of Starttime"]);
@@ -514,11 +517,38 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
           })
         .y(function(d) { return scaleY_tpm(+d.numTrips); })
         )
+    // Add labels for viz 1
+    // text label for x axis
+    viz.append("text")
+      .attr("class", "viz1")
+      .attr("transform", 
+        "translate(" + (innervizsize/2) + "," + 
+          (innervizsize+40) + ")")
+      .style("text-anchor", "middle")
+      .text("Date")
+
+    // text label for y axis
+    viz.append("text")
+      .attr("class", "viz1")
+      .attr("transform", "rotate(-90)")
+      .attr("y", -40)
+      .attr("x", 0 - (innervizsize/2))
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("# of Bluebike Rides in Month")
+
+    viz.append("text")
+      .attr("class", "viz1")
+      .attr("x", innervizsize/2)
+      .attr("y", -20)
+      .attr("text-anchor", "middle")
+      .style("font-size", "24px")
+      .text("Bluebike Rides over Time")
         
     // Building viz 2
     tripdur.forEach(function(d) {
       d.date = d3.timeParse("%d-%b-%y")(d["Week of Starttime"]);
-      d.dur = +d["Median Tripduration"];
+      d.dur = +d["Median Tripduration"]/60; // convert seconds -> minutes
     })
     var scaleX_td = d3.scaleTime()
       .domain(d3.extent(tripdur,
@@ -551,6 +581,29 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
         //.y(function(d) {return 0;})
         .y(function(d) { return scaleY_td(+d.dur); })
         )
+    // Add text labels to axes
+    viz.append("text")
+      .attr("class", "viz2")
+      .attr("transform", 
+        "translate(" + (innervizsize/2) + "," + 
+          (innervizsize+40) + ")")
+      .style("text-anchor", "middle")
+      .text("Week of Trips")
+    viz.append("text")
+      .attr("class", "viz2")
+      .attr("transform", "rotate(-90)")
+      .attr("y", -50)
+      .attr("x", 0 - (innervizsize/2))
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("Median Ride Duration (Minutes)")
+    viz.append("text")
+      .attr("class", "viz2")
+      .attr("x", innervizsize/2)
+      .attr("y", -20)
+      .attr("text-anchor", "middle")
+      .style("font-size", "24px")
+      .text("Median Ride Duration over Time")
 
     var focus2 = d3.select("#viz svg").append("g")
                 .attr("class", "focus viz2")
@@ -641,6 +694,29 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
         .attr("fill", "steelblue")
         .attr("stroke", "steelblue")
         .attr("stroke-width", 1.5);
+    // Add text labels for viz3
+    viz.append("text")
+      .attr("class", "viz3")
+      .attr("transform", 
+        "translate(" + (innervizsize/2) + "," + 
+          (innervizsize+40) + ")")
+      .style("text-anchor", "middle")
+      .text("Hour of Day (EDT)")
+    viz.append("text")
+      .attr("class", "viz3")
+      .attr("transform", "rotate(-90)")
+      .attr("y", -60)
+      .attr("x", 0 - (innervizsize/2))
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("# of Rides Made")
+    viz.append("text")
+      .attr("class", "viz3")
+      .attr("x", innervizsize/2)
+      .attr("y", -20)
+      .attr("text-anchor", "middle")
+      .style("font-size", "24px")
+      .text("Hourly distribution of Bluebikes Rides by Month")
 
     // Building visualization 4:
     d3.select("#togglebox")
@@ -693,6 +769,14 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
           //console.log(viz4color(+d["Number of Trips"]));
           return viz4color(+d["Number of Trips"]);
         })
+    // viz 4 title
+      vizsvg.append("text")
+        .attr("class", "viz4")
+        .attr("x", innervizsize/2)
+        .attr("y", 20)
+        .attr("text-anchor", "middle")
+        .style("font-size", "24px")
+        .text("Change in Ridership by Station")
 
     // This is for vis 1 but due to svg layering i need to put it last
     d3.select("#viz svg").append("rect")
@@ -729,7 +813,7 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
             d = x0 - d0.date > d1.date - x0 ? d1 : d0;
         focus2.attr("transform", "translate(" + (scaleX_td(d.date)+50) + "," + (scaleY_td(d.dur)+50) + ")");
         focus2.select(".tooltip-x").text(d3.timeFormat("%d-%b-%y")(d.date));
-        focus2.select(".tooltip-y").text(d.dur);
+        focus2.select(".tooltip-y").text(d3.format(".1f")(d.dur) + " minutes");
     }
 
     function updateSlider(v) {
