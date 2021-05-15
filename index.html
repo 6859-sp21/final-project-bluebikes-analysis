@@ -20,16 +20,21 @@ body, html {
     display: inline-block;
 }
 
-#bluebar {
+.bluebar {
   position: relative;
   display: inline-block;
-  width: 30px;
+  width: 15px;
   height: 3600px;
   top: 0px;
   background-color: #1D428A;
+  border-bottom-left-radius: 15px; 
+}
+#bluebarright {
+  border:none;
+  border-left: 3px dashed white;
   margin-right: 20px;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 15px;  
 }
 
 #sections {
@@ -185,7 +190,7 @@ input:checked + .slider4:before {
 </style>
 </head>
 <div class="wrap">
-    <div id="bluebar"></div>
+    <div class="bluebar"></div><div class="bluebar" id="bluebarright"></div>
     <div id="sections">
         <section class="step">
             <div class="title" id="main_title">Bluebikes during the pandemic</div>
