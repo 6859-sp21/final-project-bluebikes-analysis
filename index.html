@@ -11,6 +11,7 @@
 body, html {
   font-family: Helvetica, sans-serif;
   text-align: left;
+  line-height: 20px;
   margin: 0;
 }
 
@@ -37,15 +38,6 @@ body, html {
   border-bottom-right-radius: 15px;  
 }
 
-#april2020viz1 {
-  text-decoration: underline;
-  color: #0000EE;
-}
-#april2020viz2 {
-  text-decoration: underline;
-  color: #0000EE;
-}
-
 #sections {
   position: relative;
   display: inline-block;
@@ -60,10 +52,36 @@ body, html {
 }
 
 #main_title {
+  position: relative;
+  display: inline-block;
+  width: 100%;
   font-family: Helvetica, sans-serif;
   text-align: left;
   font-weight: bold;
   font-size: 24px;
+  margin-bottom: 10px; 
+}
+
+.title {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  font-family: Helvetica, sans-serif;
+  text-align: left;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#april2020viz1, #april2020viz2 {
+  background-color: #2CA3E1;
+  padding: 3px;
+  border-radius: 4px;
+  color: white;
+}
+
+#april2020viz1:hover, #april2020viz2:hover{
+  background-color: #1D428A;
+  color: white;
 }
 
 #viz{
@@ -106,11 +124,6 @@ body, html {
 }
 .viz4 {
     opacity: 0
-}
-.title {
-  font-family: Helvetica, sans-serif;
-  text-align: left;
-  font-weight: bold;
 }
 
 .overlay {
@@ -222,7 +235,7 @@ input:checked + .slider4:before {
 
          <section class="step">
             <div class="title">Median ride duration skyrocketed</div>
-            <span id="april2020viz2"> As the raw number of bike rides fell in April 2020, the median duration of a bike ride doubled from 10 minutes to 20. </span></br>
+            As the raw number of bike rides fell in <span id="april2020viz2">April 2020</span>, the median duration of a bike ride doubled from 10 minutes to 20. </br>
              In the months
             since, the median bike ride has shortened to a level near its historical average. While it's difficult to say exactly why people
             started taking longer bike rides during the pandemic, we can speculate. The shorter bike rides to and from campus that
@@ -535,7 +548,7 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
       .attr("class", "viz1")
       .datum(tripspermonth)
       .attr("fill", "none")
-      .attr("stroke", bluebikes_blue)
+      .attr("stroke", bluebikes_lightblue)
       .attr("stroke-width", 1.5)
       .attr("d", d3.line()
         .x(function(d) { 
@@ -545,26 +558,23 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
         )
     // viz1 call out April 1
     viz.append("circle")
-      .attr("class", "viz1")
       .attr("id", "april2020viz1circle")
-      .style("stroke", "orange")
-      .style("stroke-width", "2px")
+      .style("class", "viz1")
+      .style("stroke", bluebikes_blue)
+      .style("stroke-width", "0px")
       .style("fill", "none")
-      .style("opacity", 0)
       .attr("r", 20)
       .attr("cx", scaleX_tpm(d3.timeParse("%b-%y")("Apr-20")))
       .attr("cy", scaleY_tpm(46793))
     d3.selectAll("#april2020viz1")
       .on("mouseover", function() { 
         d3.select("#april2020viz1circle")
-          .style("opacity",1)
-          .style("stroke",bluebikes_blue)
+          .style("stroke-width", "2px")
           }
         )
       .on("mouseout", function() { 
         d3.select("#april2020viz1circle")
-          .style("opacity",0)
-          .style("stroke",bluebikes_blue)
+          .style("stroke-width", "0px")
           }
         )
     // Add labels for viz 1
@@ -622,7 +632,7 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
       .attr("class", "viz2")
       .datum(tripdur)
       .attr("fill", "none")
-      .attr("stroke", bluebikes_blue)
+      .attr("stroke", bluebikes_lightblue)
       .attr("stroke-width", 1.5)
       .attr("d", d3.line()
         .x(function(d) {
@@ -659,24 +669,21 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
     viz.append("circle")
       .attr("class", "viz2")
       .attr("id", "april2020viz2circle")
-      .style("stroke", "orange")
-      .style("stroke-width", "2px")
+      .style("stroke",bluebikes_blue)
+      .style("stroke-width", "0px")
       .style("fill", "none")
-      .style("opacity", 0)
       .attr("r", 40)
       .attr("cx", scaleX_td(d3.timeParse("%d-%b-%y")("26-Apr-20")))
       .attr("cy", scaleY_td(1140/60))
     d3.selectAll("#april2020viz2")
       .on("mouseover", function() { 
         d3.select("#april2020viz2circle")
-          .style("opacity",1)
-          .style("stroke",bluebikes_blue)
+          .style("stroke-width", "2px")
           }
         )
       .on("mouseout", function() { 
         d3.select("#april2020viz2circle")
-          .style("opacity",0)
-          .style("stroke",bluebikes_blue)
+          .style("stroke-width", "0px")
           }
         )
 
