@@ -374,15 +374,15 @@ scroll.on('active', function(index){
   lastIndex = activeIndex;
 })
 
-const vizsize = window.innerWidth/2;
-const innervizsize = vizsize - 250; 
+const vizsize = window.innerWidth - 360;
+const innervizsize = vizsize * 0.7 - 250; 
 
 var viz = d3.select("#viz")
     .attr("width", vizsize)
-    .attr("height", vizsize)
+    .attr("height", vizsize * 0.7)
     .append("svg")
         .attr("width", vizsize)
-        .attr("height", vizsize)
+        .attr("height", vizsize * 0.7)
     .append("g")
         .attr("transform",
               "translate(" + 100 + "," + 50 + ")");
@@ -405,7 +405,7 @@ function ready(error, tripspermonth, tripdur, boston, tripsperhour, beforestatio
 
     viz.append("g")
      .attr("class", "viz0")
-     .attr("transform", "translate(000000," + innervizsize + ") scale(0.0500000,-0.0500000)")
+     .attr("transform", "translate(000000," + innervizsize + ") scale("+innervizsize/8000+",-"+innervizsize/8000 + ")")
      .attr("fill", "#1D428A")
      .attr("stroke", "none")
      .append("path")
