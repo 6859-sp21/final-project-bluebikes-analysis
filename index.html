@@ -31,25 +31,6 @@ z-index: 90;
     height: 600px;
 }
 
-#viz{
-    display: inline-block;
-    position: fixed;
-    top: 60px;
-    right: 10px;
-    z-index: 1;
-    margin-left: 0;
-
-    height: 600px;
-    width: 600px;
-}
-#slider {
-  position: fixed;
-  display: inline-block;
-  top: 600px;
-  width:400px;
-  right: 160px;
-  z-index: 1;
-}
 #main_title {
   font-family: Helvetica, sans-serif;
   text-align: left;
@@ -57,21 +38,29 @@ z-index: 90;
   font-size: 24px;
 }
 
-#sliderbox {
+#viz{
+    display: inline-block;
+    position: fixed;
+    top: 60px;
+    left: 450px;
+    z-index: 1;
+    margin-left: 0;
+
+    /*height: 600px;
+    width: 600px;*/
+}
+#slider, #sliderbox{
   position: fixed;
   display: inline-block;
-  top: 580px;
-  width:400px;
-  right: 160px;
+  left: 500px;
   z-index: 1;
 }
+
 
 #togglebox {
   position: fixed;
   display: inline-block;
-  top: 530px;
-  width:400px;
-  right: 160px;
+  left: 500px;
   z-index: 1;
 }
 
@@ -120,8 +109,7 @@ z-index: 90;
 .switch {
   position: fixed;
   display: inline-block;
-  top: 520px;
-  right: 160px;
+  left: 800px;
   width: 60px;
   height: 34px;
   z-index: 300;
@@ -372,11 +360,15 @@ scroll.on('active', function(index){
   lastIndex = activeIndex;
 })
 
+const vizsize = window.innerWidth/2;
+const innervizsize = vizsize - 200; 
 
 var viz = d3.select("#viz")
+    .attr("width", vizsize)
+    .attr("height", vizsize)
     .append("svg")
-        .attr("width", 600)
-        .attr("height", 600)
+        .attr("width", vizsize)
+        .attr("height", vizsize)
     .append("g")
         .attr("transform",
               "translate(" + 50 + "," + 50 + ")");
@@ -495,16 +487,16 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
           function(d) { 
               return d.date; 
           }))
-      .range([ 0, 400]);
+      .range([ 0, innervizsize]);
     viz.append("g")
       .attr("class", "viz1")
-      .attr("transform", "translate(0," + 400 + ")")
+      .attr("transform", "translate(0," + innervizsize + ")")
       .call(d3.axisBottom(scaleX_tpm).tickFormat(d3.timeFormat("%b-%y")));
 
     // Add Y axis
     var scaleY_tpm = d3.scaleLinear()
       .domain([0, d3.max(tripspermonth, function(d) {return +d.numTrips; })])
-      .range([ 400, 0 ]);
+      .range([ innervizsize, 0 ]);
     viz.append("g")
       .attr("class", "viz1")
       .call(d3.axisLeft(scaleY_tpm));
@@ -533,15 +525,15 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
         function(d) {
           return d.date;
         }))
-        .range([0, 400]);
+        .range([0, innervizsize]);
     viz.append("g")
       .attr("class", "viz2")
-      .attr("transform", "translate(0," + 400 + ")")
+      .attr("transform", "translate(0," + innervizsize + ")")
       .call(d3.axisBottom(scaleX_td).tickFormat(d3.timeFormat("%b-%y")));
      
     var scaleY_td = d3.scaleLinear()
       .domain([0, d3.max(tripdur, function(d) {return d.dur; })])
-      .range([ 400, 0 ]);
+      .range([ innervizsize, 0 ]);
     viz.append("g")
       .attr("class", "viz2")
       .call(d3.axisLeft(scaleY_td));
@@ -608,18 +600,26 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
       return d_time.getMonth() == tph_month && d_time.getFullYear() == tph_year;
     })
 
+    d3.select("#slider")
+      .style("width", innervizsize + "px")
+      .style("top", innervizsize + 150 +"px")
+
+    d3.select("#sliderbox")
+      .style("width", innervizsize + "px")
+      .style("top", innervizsize + 130 +"px")
+
     var scaleX_tph = d3.scaleBand()
       .domain(d3.range(24))
-      .range([0, 400])
+      .range([0, innervizsize])
       .padding(0.1);
     viz.append("g")
       .attr("class", "viz3")
-      .attr("transform", "translate(0," + 400 + ")")
+      .attr("transform", "translate(0," + innervizsize + ")")
       .call(d3.axisBottom(scaleX_tph));
         
     var scaleY_tph = d3.scaleLinear()
       .domain([0, d3.max(tripsperhour, function(d) {return +d["NumTrips"]; })])
-      .range([ 400, 0 ]);
+      .range([ innervizsize, 0 ]);
     viz.append("g")
       .attr("class", "viz3")
       .call(d3.axisLeft(scaleY_tph));
@@ -643,10 +643,15 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
         .attr("stroke-width", 1.5);
 
     // Building visualization 4:
+    d3.select("#togglebox")
+      .style("top", innervizsize+130+"px")
+    d3.select(".switch")
+      .style("top", innervizsize+120+"px")
+
     var projection = d3.geoMercator()
       .scale(80000)
       .center([-71.057, 42.313])
-      .translate([600/2, 600/2]);
+      .translate([vizsize/2, vizsize/2]);
 
     // A path generator
     var path = d3.geoPath()
@@ -694,8 +699,8 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
       .attr("class", "overlay")
       .attr("transform",
               "translate(" + 50 + "," + 50 + ")")
-      .attr("width", 400)
-      .attr("height", 400)
+      .attr("width", innervizsize)
+      .attr("height", innervizsize)
       .on("mouseover", function() { 
         focus.style("display", null);
         focus2.style("display", null);
