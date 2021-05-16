@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<!-- Load d3.js -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;700&display=swap" rel="stylesheet">
+
+<head>
+<style>
+/* css goes here */
+body, html {
+  font-family:'Montserrat', sans-serif;
+  text-align: left;
+  line-height: 20px;
+  margin: 0;
+}
+
+.wrap {
+    position: absolute;
+    margin-left: 50px;
+    margin-right: 50px;
+    display: inline-block;
+    top:0;
+    bottom:0;
+}
+
+.bluebar {
+  position: relative;
+  display: inline-block;
+  width: 15px;
+  height: 90%;
+  top: 0px;
+  background-color: #1D428A;
+  border-bottom-left-radius: 15px; 
+}
+#bluebarright {
+  border:none;
+  border-left: 3px dashed white;
+  margin-right: 20px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 15px;  
+}
+
+.content {
+  position: relative;
+  display: inline-block;
+  width: 800px;
+  top: 50px;
+  vertical-align: top;
+}
+
+#main_title {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  text-align: left;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 30px;
+  margin-bottom: 10px; 
+}
+
+.title {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  text-align: left;
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+</style>
+</head>
+<div class="wrap">
+    <div class="bluebar"></div><div class="bluebar" id="bluebarright"></div>
+    <div class="content">
+    <div class="title" id="main_title">6.859 Final Project</div>
+    <div class="title">Bluebikes during the pandemic</div>
+    Ahmed Elbashir and Belinda Shi
+    </br>
+    </br>
+    </br>
+    Abstract here
+    </br>
+    Image here
+    </br>
+    Link to paper here
+    </br>
+    Link to video here
+    </br>
+    <a href="index.html">Link to project</a>
+    </div>
+</div>
+<script>
+const bluebikes_blue = "#1D428A"
+const bluebikes_lightblue = "#2CA3E1"
+</script>
