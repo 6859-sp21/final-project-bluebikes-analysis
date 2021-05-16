@@ -6,11 +6,14 @@
 <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.js"></script>
 
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;700&display=swap" rel="stylesheet">
+
 <head>
 <style>
 /* css goes here */
 body, html {
-  font-family: Helvetica, sans-serif;
+  font-family:'Montserrat', sans-serif;
   text-align: left;
   line-height: 20px;
   margin: 0;
@@ -56,10 +59,10 @@ body, html {
   position: relative;
   display: inline-block;
   width: 100%;
-  font-family: Helvetica, sans-serif;
   text-align: left;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 30px;
+  line-height: 30px;
   margin-bottom: 10px; 
 }
 
@@ -67,10 +70,10 @@ body, html {
   position: relative;
   display: inline-block;
   width: 100%;
-  font-family: Helvetica, sans-serif;
   text-align: left;
   font-weight: bold;
   margin-bottom: 10px;
+  font-size: 20px;
 }
 
 #april2020viz1, #april2020viz2 {
@@ -226,11 +229,15 @@ input:checked + .slider4:before {
          <section class="step">
             <div class="title">The April 2020 bluebike collapse</div>
          In March 2020, the novel coronavirus switched from being a distant concern to an immediate and pressing danger in the United States. </br>
-         The first week or two, people mostly operated as normal, taking more care to wash their hands and avoid touching their face. For the 
-         aggregated ridership data, the real turning point was in <span id="april2020viz1">April 2020</span>, when the majority of the population stayed locked at home while
-         businesses shuttered and the case rate soared. The total number of Bluebikes trips fell well below its April 2019 levels and even below
+         The first week or two, people mostly operated as normal, taking more care to wash their hands and avoid touching their face. 
+         For the aggregated ridership data, the real turning point was in <span id="april2020viz1">April 2020</span>, when the majority of the population stayed locked at home while
+         businesses shuttered and the case rate soared. 
+
+         The total number of Bluebikes trips fell well below its April 2019 levels and even below
          the typical winter troughs, recovering that summer as biking became one of the safest forms of travel, but still not quite
-         reaching its 2019 highs. Whatever advantages Bluebikes had over competing modes of transportation in safety, it still lost riders
+         reaching its 2019 highs. 
+
+         Whatever advantages Bluebikes had over competing modes of transportation in safety, it still lost riders
          as people had fewer reasons to leave home. 
          </section>
 
@@ -497,7 +504,7 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
 
     focus.append("rect")
         .attr("class", "tooltip")
-        .attr("width", 120)
+        .attr("width", 130)
         .attr("height", 70)
         .attr("x", 10)
         .attr("y", -22)
@@ -697,7 +704,7 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
 
     focus2.append("rect")
         .attr("class", "tooltip")
-        .attr("width", 150)
+        .attr("width", 170)
         .attr("height", 70)
         .attr("x", 10)
         .attr("y", -22)
@@ -711,7 +718,7 @@ l-31 -109 -216 0 c-200 0 -553 -4 -2565 -30 -413 -5 -751 -8 -753 -6 -2 2 57 \
 
     focus2.append("text")
         .attr("class", "tooltip-x")
-        .attr("x", 73)
+        .attr("x", 80)
         .attr("y", -2);
 
     focus2.append("text")
